@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBackMemu"
+        >
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/bigh_menu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/menu"/>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/bigh_text"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:layout_height="wrap_content"
+            android:text="@string/BeiJing28"/>
+
+        <ImageView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/bigh_down"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/down"/>
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/beijing29"
+        android:text="北京28"
+        android:textSize="50sp"
+        android:textColor="#0f0"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"/>
+</LinearLayout>

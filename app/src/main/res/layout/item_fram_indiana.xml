@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:id="@+id/enheng"
+              android:layout_width="match_parent"
+              android:background="@color/progressbarNomal"
+              android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBackMemu"
+        >
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/bigh_menu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/menu"/>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/bigh_text"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:layout_height="wrap_content"
+            android:text="@string/Indiana"/>
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:id="@+id/text_indiana_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+           android:text="@string/RecordIndiana"
+            android:textColor="@color/colorText"
+            android:textSize="13sp"
+            />
+    </RelativeLayout>
+
+
+    <GridView
+        android:id="@+id/grid_fram_indiana"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:horizontalSpacing="2dp"
+        android:numColumns="2"
+        android:verticalSpacing="2dp"/>
+</LinearLayout>
