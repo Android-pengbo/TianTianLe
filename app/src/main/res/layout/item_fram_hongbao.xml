@@ -303,7 +303,7 @@
             android:layout_height="1dp"
             android:background="@color/progressbarNomal"
             />
-        <com.tiantianle.MyListview
+        <com.tiantianle.view.MyListview
             android:id="@+id/mliseview_hongbao_fram"
             android:layout_width="match_parent"
             android:layout_height="0dp"

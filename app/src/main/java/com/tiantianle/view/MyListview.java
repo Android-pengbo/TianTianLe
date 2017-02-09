@@ -1,4 +1,4 @@
-package com.tiantianle;
+package com.tiantianle.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -13,7 +13,6 @@ public class MyListview extends ListView {
     public MyListview(Context context) {
         super(context);
     }
-    //<code></code>
     public MyListview(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }

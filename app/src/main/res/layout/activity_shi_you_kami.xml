@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_shi_you_kami"
     android:layout_width="match_parent"
     android:orientation="vertical"
@@ -36,104 +37,34 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
-        <LinearLayout
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:text="@string/duihuanMianZhi"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+
+        <com.dalong.flowlayout.FlowLayout
+            android:id="@+id/mFlowLayout"
+            app:horizontalSpacing="15dp"
+            app:verticalSpacing="15dp"
+            app:textSize="16sp"
+            app:equally="true"
+            app:stype="select"
+            app:isSingle="true"
+            app:flowGravity="center"
+            app:itemPaddingLeft="5dp"
+            app:itemPaddingTop="2dp"
+            app:itemPaddingRight="5dp"
+            app:itemPaddingBottom="2dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            app:flowBackground="@drawable/jingdongeka_radiobutton_back"
+            app:textColor="@color/clolrTextNorenl"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/duihuanMianZhi"
-                android:textSize="14sp"
-                android:layout_gravity="center"
-                android:layout_height="wrap_content"/>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_weight="4"
-            android:orientation="vertical"
-            android:layout_height="wrap_content">
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/radbtn_shiyoukami_10"
-                    android:layout_width="60dp"
-                    android:checked="true"
-                    android:layout_marginLeft="30dp"
-                    android:button="@null"
-                    android:textColor="@color/clolrTextNorenl"
-                    android:gravity="center"
-                    android:background="@drawable/jingdongeka_radiobutton_back"
-                    android:text="10元"
-                    android:layout_height="30dp"/>
-                <RadioButton
-                    android:id="@+id/radbtn_shiyoukami_20"
-                    android:layout_width="60dp"
-                    android:textColor="@color/clolrTextNorenl"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/jingdongeka_radiobutton_back"
-                    android:button="@null"
-                    android:text="20元"
-                    android:gravity="center"
-                    android:layout_height="30dp"/>
-                <RadioButton
-                    android:id="@+id/radbtn_shiyoukami_50"
-                    android:layout_width="60dp"
-                    android:textColor="@color/clolrTextNorenl"
-                    android:layout_marginLeft="30dp"
-                    android:background="@drawable/jingdongeka_radiobutton_back"
-                    android:button="@null"
-                    android:gravity="center"
-                    android:text="50元"
-                    android:layout_height="30dp"/>
-
-
-            </RadioGroup>
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp"
-                android:layout_height="wrap_content">
-                <RadioButton
-                    android:id="@+id/radbtn_shiyoukami_100"
-                    android:layout_width="60dp"
-                    android:button="@null"
-                    android:textColor="@color/clolrTextNorenl"
-                    android:layout_marginLeft="30dp"
-                    android:text="100元"
-                    android:gravity="center"
-                    android:background="@drawable/jingdongeka_radiobutton_back"
-                    android:layout_height="30dp"/>
-                <RadioButton
-                    android:id="@+id/radbtn_shiyoukami_200"
-                    android:layout_width="60dp"
-                    android:textColor="@color/clolrTextNorenl"
-                    android:button="@null"
-                    android:layout_marginLeft="30dp"
-                    android:text="200元"
-                    android:gravity="center"
-                    android:background="@drawable/jingdongeka_radiobutton_back"
-                    android:layout_height="30dp"/>
-                <RadioButton
-                    android:id="@+id/radbtn_shiyoukami_300"
-                    android:layout_width="60dp"
-                    android:textColor="@color/clolrTextNorenl"
-                    android:button="@null"
-                    android:layout_marginLeft="30dp"
-                    android:text="300元"
-                    android:gravity="center"
-                    android:background="@drawable/jingdongeka_radiobutton_back"
-                    android:layout_height="30dp"/>
-
-
-            </RadioGroup>
-        </LinearLayout>
-
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <LinearLayout

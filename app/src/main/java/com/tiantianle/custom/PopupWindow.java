@@ -1,4 +1,4 @@
-package com.tiantianle;
+package com.tiantianle.custom;
 
 import android.app.Activity;
 import android.content.Context;
@@ -11,9 +11,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.tiantianle.R;
+import com.tiantianle.view.AmountView;
 
 /**
  * Created by PengBo  on 2017/2/7.
@@ -22,21 +26,19 @@ import android.widget.Toast;
 public class PopupWindow extends android.widget.PopupWindow {
 
 
-    private LocalBroadcastManager mLocalBroadcastManager;
+
     private final View mInflate;
     protected View rootView;
     protected ImageView mImgPopuIndinaBuyCloss;
     protected TextView mTextPopuIndinanBuy;
-    protected ImageView mImgPopuIndinaBuyRed;
-    protected Button mBtnPopuIndinaBuyRed;
-    protected ImageView mImgPopuIndinaBuyAdd;
-    protected Button mBtnPopuIndinaBuyAdd;
     protected Button mBtnPopuIndinaBut5;
     protected Button mBtnPopuIndinaBut20;
     protected Button mBtnPopuIndinaBut50;
     protected Button mBtnPopuIndinaBut100;
     protected Button mBtnQuerenPopuIndina;
-    private int  acount=100;
+    private AmountView mAmountView;
+
+
     public PopupWindow(final Activity context, int i) {
         super(context);
         LayoutInflater inflater = (LayoutInflater) context
@@ -48,23 +50,8 @@ public class PopupWindow extends android.widget.PopupWindow {
         mBtnPopuIndinaBut20 = (Button) mInflate.findViewById(R.id.btn_popu_indina_but_20);
         mBtnPopuIndinaBut50 = (Button) mInflate.findViewById(R.id.btn_popu_indina_but_50);
         mBtnPopuIndinaBut100 = (Button) mInflate.findViewById(R.id.btn_popu_indina_but_100);
-        mTextPopuIndinanBuy = (TextView) mInflate.findViewById(R.id.text_popu_indinan_buy);
-        mTextPopuIndinanBuy.setText(acount+"");
-        mBtnPopuIndinaBuyRed = (Button) mInflate.findViewById(R.id.btn_popu_indina_buy_red);
-        mBtnPopuIndinaBuyAdd= (Button) mInflate.findViewById(R.id.btn_popu_indina_buy_add);
-        mBtnPopuIndinaBuyRed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Toast.makeText(context,"减见见",Toast.LENGTH_SHORT).show();
-            }
-        });
-        mBtnPopuIndinaBuyAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Toast.makeText(context,"加加加",Toast.LENGTH_SHORT).show();
-            }
-        });
+        mAmountView= (AmountView) mInflate.findViewById(R.id.amount_view);
+        mAmountView.setGoods_storage(200);
 
         //设置SelectPicPopupWindow的View
         this.setContentView(mInflate);
@@ -100,28 +87,30 @@ public class PopupWindow extends android.widget.PopupWindow {
             @Override
             public void onClick(View view) {
 
-                mTextPopuIndinanBuy.setText(mBtnPopuIndinaBut5.getText().toString());
+
             }
         });
         mBtnPopuIndinaBut20.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(context,"这是5元",Toast.LENGTH_SHORT).show();
+              /*  mTextPopuIndinanBuy.setText(mBtnPopuIndinaBut20.getText().toString());*/
+          // mAmountView.setMoney(mBtnPopuIndinaBut20.getText().toString());
 
-                mTextPopuIndinanBuy.setText(mBtnPopuIndinaBut20.getText().toString());
             }
         });
         mBtnPopuIndinaBut50.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(context,"这是5元",Toast.LENGTH_SHORT).show();
 
-                mTextPopuIndinanBuy.setText(mBtnPopuIndinaBut50.getText().toString());
             }
         });
         mBtnPopuIndinaBut100.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Toast.makeText(context,"这是5元",Toast.LENGTH_SHORT).show();
 
-                mTextPopuIndinanBuy.setText(mBtnPopuIndinaBut100.getText().toString());
             }
         });
 

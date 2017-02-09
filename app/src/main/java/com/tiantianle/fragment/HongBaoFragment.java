@@ -11,7 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.tiantianle.MyListview;
+import com.tiantianle.view.MyListview;
 import com.tiantianle.R;
 import com.tiantianle.activity.HongBaoRember;
 import com.tiantianle.adapter.HongBaoListviewAdapter;

@@ -11,8 +11,11 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.dalong.flowlayout.Flow;
+import com.dalong.flowlayout.FlowLayout;
 import com.tiantianle.R;
 import com.tiantianle.adapter.JingDongEKaListAdapter;
+import com.tiantianle.custom.FlowEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,8 +34,10 @@ public class JingDongEka extends AppCompatActivity implements View.OnClickListen
     protected LinearLayout mActivityJingDongEka;
     protected EditText mEdittextJingdongeka;
     protected Button mBtnQuerenJingdongeka;
+    protected FlowLayout mMFlowLayout;
     private JingDongEKaListAdapter mJingDongEKaListAdapter;
     private List<String> mList;
+    private List<Flow> mFlowList;
     private String userid[] = {"1105", "1103", "1103", "1103", "1103", "1103", "1103", "1103"};
 
     @Override
@@ -41,7 +46,32 @@ public class JingDongEka extends AppCompatActivity implements View.OnClickListen
         super.setContentView(R.layout.activity_jing_dong_eka);
         initView();
         initdate();
+        initDate();
     }
+
+    private void initDate() {
+        mFlowList = getPhoneList();
+        mMFlowLayout.setFlowData(mFlowList);
+
+    }
+
+    public List<Flow> getPhoneList() {
+        List<Flow> list = new ArrayList<>();
+        Flow mFlow = new FlowEntity("1", "10元");
+        Flow mFlow2 = new FlowEntity("2", "20元");
+        Flow mFlow3 = new FlowEntity("3", "50元");
+        Flow mFlow4 = new FlowEntity("4", "100元");
+        Flow mFlow5 = new FlowEntity("5", "200元");
+        Flow mFlow6 = new FlowEntity("6", "300元");
+        list.add(mFlow);
+        list.add(mFlow2);
+        list.add(mFlow3);
+        list.add(mFlow4);
+        list.add(mFlow5);
+        list.add(mFlow6);
+        return list;
+    }
+
 
     private void initdate() {
         mList = new ArrayList<>();
@@ -60,18 +90,6 @@ public class JingDongEka extends AppCompatActivity implements View.OnClickListen
     public void onClick(View view) {
         if (view.getId() == R.id.img_jingdongEka_back) {
             finish();
-        } else if (view.getId() == R.id.radbtn_jindongEka_10) {
-
-        } else if (view.getId() == R.id.radbtn_jindongEka_20) {
-
-        } else if (view.getId() == R.id.radbtn_jindongEka_50) {
-
-        } else if (view.getId() == R.id.radbtn_jindongEka_100) {
-
-        } else if (view.getId() == R.id.radbtn_jindongEka_200) {
-
-        } else if (view.getId() == R.id.radbtn_jindongEka_300) {
-
         } else if (view.getId() == R.id.btn_queren_jingdongeka) {
 
         }
@@ -80,18 +98,6 @@ public class JingDongEka extends AppCompatActivity implements View.OnClickListen
     private void initView() {
         mImgJingdongEkaBack = (ImageView) findViewById(R.id.img_jingdongEka_back);
         mImgJingdongEkaBack.setOnClickListener(JingDongEka.this);
-        mRadbtnJindongEka10 = (RadioButton) findViewById(R.id.radbtn_jindongEka_10);
-        mRadbtnJindongEka10.setOnClickListener(JingDongEka.this);
-        mRadbtnJindongEka20 = (RadioButton) findViewById(R.id.radbtn_jindongEka_20);
-        mRadbtnJindongEka20.setOnClickListener(JingDongEka.this);
-        mRadbtnJindongEka50 = (RadioButton) findViewById(R.id.radbtn_jindongEka_50);
-        mRadbtnJindongEka50.setOnClickListener(JingDongEka.this);
-        mRadbtnJindongEka100 = (RadioButton) findViewById(R.id.radbtn_jindongEka_100);
-        mRadbtnJindongEka100.setOnClickListener(JingDongEka.this);
-        mRadbtnJindongEka200 = (RadioButton) findViewById(R.id.radbtn_jindongEka_200);
-        mRadbtnJindongEka200.setOnClickListener(JingDongEka.this);
-        mRadbtnJindongEka300 = (RadioButton) findViewById(R.id.radbtn_jindongEka_300);
-        mRadbtnJindongEka300.setOnClickListener(JingDongEka.this);
         mTextSuoXuModouJingdongeka = (TextView) findViewById(R.id.text_suoXu_modou_jingdongeka);
         mListviewJingdongeka = (ListView) findViewById(R.id.listview_jingdongeka);
         mActivityJingDongEka = (LinearLayout) findViewById(R.id.activity_jing_dong_eka);
@@ -99,5 +105,6 @@ public class JingDongEka extends AppCompatActivity implements View.OnClickListen
         mEdittextJingdongeka.setOnClickListener(JingDongEka.this);
         mBtnQuerenJingdongeka = (Button) findViewById(R.id.btn_queren_jingdongeka);
         mBtnQuerenJingdongeka.setOnClickListener(JingDongEka.this);
+        mMFlowLayout = (FlowLayout) findViewById(R.id.mFlowLayout);
     }
 }
