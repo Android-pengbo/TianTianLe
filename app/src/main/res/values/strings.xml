@@ -57,4 +57,10 @@
     <string name="duihuanNewDongTai">最新兑换动态</string>
     <string name="duihuanMianZhi">兑换面值:</string>
     <string name="duihuanSuoXuMoDou">所需魔豆:</string>
+    <string name="MyMessage">我的消息</string>
+    <string name="MyMessage_delete">清空</string>
+
+
+    <!--刷新-->
+    <string name="pull_to_refresh_footer_pull_label" >上拉加载更多</string>
 </resources>

@@ -9,15 +9,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.allen.library.SuperTextView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.R;
+import com.tiantianle.activity.MessageActivity;
+import com.tiantianle.utils.IntentUtils;
 
 /**
  * Created by wyj on 2017/1/22.
+ *
+ * 我的fragment
  */
 
 public class MyFragment extends Fragment implements View.OnClickListener {
@@ -66,15 +69,18 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.suptertext_magicBean) {
+        if (view.getId() == R.id.suptertext_magicBean) {  //魔豆
 
-        } else if (view.getId() == R.id.supertext_message) {
 
-        } else if (view.getId() == R.id.supertext_password) {
+        } else if (view.getId() == R.id.supertext_message) {//消息通知
 
-        } else if (view.getId() == R.id.suptertext_recharges) {
+            IntentUtils.goTo(getActivity(), MessageActivity.class);
 
-        } else if (view.getId() == R.id.suptertext_about) {
+        } else if (view.getId() == R.id.supertext_password) {//密码设置
+
+        } else if (view.getId() == R.id.suptertext_recharges) {//魔豆充值
+
+        } else if (view.getId() == R.id.suptertext_about) {//关于
 
         }
     }

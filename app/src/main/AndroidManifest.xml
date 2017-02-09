@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.tiantianle">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
+        android:name=".MyaApplication"
         android:allowBackup="true"
         android:icon="@drawable/lolol"
         android:label="@string/app_name"
@@ -27,6 +31,15 @@
         </activity>
         <activity android:name=".activity.ShiYouKami">
         </activity>
+
+        <!-- 我的消息-->
+       <activity android:name=".activity.MessageActivity">
+        </activity>
+
+        <!-- 我的消息二级界面-->
+        <activity android:name=".activity.SpecificMessageActivity">
+        </activity>
+
     </application>
 
 </manifest>

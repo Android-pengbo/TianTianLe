@@ -1,14 +1,12 @@
 package com.tiantianle;
 
-import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.util.AttributeSet;
-import android.view.View;
 import android.view.WindowManager;
 
+import com.google.gson.Gson;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 /**
@@ -16,9 +14,13 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  */
 
 public class BaseActivity extends AppCompatActivity {
+    public Gson gs;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        gs = new Gson();
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
