@@ -14,7 +14,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  */
 
 public class BaseActivity extends AppCompatActivity {
-    public Gson gs;
+    public Gson gs;;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
