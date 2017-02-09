@@ -1,5 +1,6 @@
 package com.tiantianle.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -13,8 +14,8 @@ import com.tiantianle.BaseActivity;
 import com.tiantianle.Bean.MessageBean;
 import com.tiantianle.R;
 import com.tiantianle.adapter.MessageAdapter;
+import com.tiantianle.utils.Constant;
 import com.tiantianle.utils.HttpApi;
-import com.tiantianle.utils.IntentUtils;
 import com.tiantianle.utils.ToastUtils;
 import com.tiantianle.view.PullToRefreshView;
 
@@ -25,6 +26,7 @@ import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,9 +41,9 @@ public class MessageActivity extends BaseActivity {
 
     protected static final int YES = 1; //请求成功
 
-    private ImageView img_back;//返回
+    private ImageView img_back_title;//返回
 
-    private TextView tv_delete;//清空
+    private TextView tv_deletes_title;//清空
 
     private int page = 1;
 
@@ -49,7 +51,7 @@ public class MessageActivity extends BaseActivity {
 
     private ListView lv_message;
 
-    private MessageBean MeBean;
+    private MessageBean MeBean = new MessageBean();
 
     private List<MessageBean.message> bean = new ArrayList<MessageBean.message>();
 
@@ -83,12 +85,33 @@ public class MessageActivity extends BaseActivity {
         HttpData();
     }
 
+    /* 重写 onActivityResult()*/
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        Boolean bool = data.getBooleanExtra("isbool", false);
+        switch (requestCode) {
+
+            case DEFAULT_KEYS_DIALER:
+                if (bool) {
+                    page = 1;
+                    bean.clear();
+                    HttpData();
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
     private void HttpData() {
         RequestParams params = new RequestParams(HttpApi.MY_MESSAGE);
 
-        params.addParameter("account", "18217614361");
+        params.addParameter("account", Constant.Config.account);
         params.addParameter("page", page + "");
-        params.addParameter("imei", "123454");
+        params.addParameter("imei", Constant.Config.imei);
+        LogUtil.e("url = " + params.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
@@ -109,10 +132,6 @@ public class MessageActivity extends BaseActivity {
                             ToastUtils.showShort(MessageActivity.this, "暂未发现更多！");
                         }
                     } else {
-                        MeBean = new MessageBean();
-
-                        Message mg = Message.obtain(mHnaHandler, YES);
-                        mg.sendToTarget();
 
                         ToastUtils.showShort(MessageActivity.this, jsonObject.get("biz_content").toString());
                     }
@@ -149,13 +168,13 @@ public class MessageActivity extends BaseActivity {
     }
 
     private void InitView() {
-        img_back = (ImageView) findViewById(R.id.img_back);
-        tv_delete = (TextView) findViewById(R.id.tv_delete);
+        img_back_title = (ImageView) findViewById(R.id.img_back_title);
+        tv_deletes_title = (TextView) findViewById(R.id.tv_deletes_title);
         lv_message = (ListView) findViewById(R.id.lv_message);
         ll_message = (PullToRefreshView) findViewById(R.id.ll_message);
 
-        img_back.setOnClickListener(new MyOnClickListener());
-        tv_delete.setOnClickListener(new MyOnClickListener());
+        img_back_title.setOnClickListener(new MyOnClickListener());
+        tv_deletes_title.setOnClickListener(new MyOnClickListener());
         lv_message.setOnItemClickListener(new MyOnItemClickListener());
 
         ll_message.setLastUpdated(getTime());//更新刷新时间
@@ -169,16 +188,13 @@ public class MessageActivity extends BaseActivity {
         public void onClick(View view) {
             switch (view.getId()) {
 
-                case R.id.img_back:  //返回
+                case R.id.img_back_title:  //返回
                     finish();
                     break;
 
-                case R.id.tv_delete:  //清空
+                case R.id.tv_deletes_title:  //清空
 
-                    if (bean != null && bean.size() > 0) {
-                            bean.clear();
-                        adapter.notifyDataSetChanged();
-                    }
+                    getHttpDelete();
 
                     break;
 
@@ -186,13 +202,76 @@ public class MessageActivity extends BaseActivity {
         }
     }
 
+    private void getHttpDelete() {
+
+        //清空个人消息
+        RequestParams params = new RequestParams(HttpApi.MY_MESSAGE_DELETE_ALL);
+        params.addParameter("account", Constant.Config.account);
+        params.addParameter("imei", Constant.Config.imei);
+        LogUtil.e("url = " + params.toString());
+        x.http().post(params, new Callback.CommonCallback<String>() {
+
+            //请求成功
+            @Override
+            public void onSuccess(String result) {
+                LogUtil.e("联网成功 == " + result.toString());
+
+                try {
+                    JSONObject jsonObject = new JSONObject(result);
+
+
+                    if (jsonObject.get("state").equals("success") && jsonObject.get("biz_content").equals("删除成功")) {
+
+                    if (bean != null && bean.size() > 0) {
+                        bean.clear();
+                        adapter.notifyDataSetChanged();
+                    }
+                    } else {
+                        ToastUtils.showShort(MessageActivity.this, jsonObject.get("biz_content").toString());
+                    }
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    LogUtil.e("解析异常！");
+                }
+
+            }
+
+            //请求失败
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                LogUtil.e("联网失败 == " + ex.getMessage());
+                ToastUtils.showShort(MessageActivity.this, "网络不给力！");
+            }
+
+            //主动调用取消请求的回调方法
+            @Override
+            public void onCancelled(CancelledException cex) {
+                LogUtil.e("onCancelled == " + cex.getMessage());
+            }
+
+            // 不管成功或者失败最后都会回调该接口
+            @Override
+            public void onFinished() {
+                LogUtil.e("onFinished == ");
+            }
+        });
+
+
+    }
+
     class MyOnItemClickListener implements android.widget.AdapterView.OnItemClickListener {
 
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-            IntentUtils.goTo(MessageActivity.this,SpecificMessageActivity.class);
+//            IntentUtils.goTo(MessageActivity.this,SpecificMessageActivity.class,bean.get(position));
 
+            Intent intent = new Intent();
+            intent.setClass(MessageActivity.this, SpecificMessageActivity.class);
+            intent.putExtra("class", (Serializable) bean.get(position));
+            startActivityForResult(intent, DEFAULT_KEYS_DIALER);
         }
     }
 

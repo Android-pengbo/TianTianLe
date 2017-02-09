@@ -3,6 +3,8 @@ package com.tiantianle.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/2/8.
  *
@@ -39,12 +41,21 @@ public class IntentUtils {
         packageContext.startActivity(intent);
     }
 
-//    public static void goTo(Context packageContext, Class<?> cls, int ss, String num, String three) {
-//        Intent intent = new Intent(packageContext, cls);
-//        intent.putExtra("stringContent", ss);
-//        intent.putExtra("stringNum", num);
-//        intent.putExtra("three", three);
-//        packageContext.startActivity(intent);
-//    }
+    public static void goTo(Context packageContext, Class<?> cls, int ss, String num, String three) {
+        Intent intent = new Intent(packageContext, cls);
+        intent.putExtra("stringContent", ss);
+        intent.putExtra("stringNum", num);
+        intent.putExtra("three", three);
+        packageContext.startActivity(intent);
+    }
+
+    //传递类对象  类一定要实现序列化Serializable
+    public static void goTo(Context packageContext, Class<?> cls, Object object) {
+        Intent intent = new Intent(packageContext, cls);
+        intent.putExtra("class",(Serializable)object);
+        packageContext.startActivity(intent);
+    }
+
+
 }
 
