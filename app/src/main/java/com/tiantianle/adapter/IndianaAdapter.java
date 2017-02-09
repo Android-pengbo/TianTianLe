@@ -2,7 +2,6 @@ package com.tiantianle.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.support.v4.content.LocalBroadcastManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,16 +15,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.tiantianle.MainActivity;
 import com.tiantianle.R;
 
 import java.util.List;
-
-import static android.content.Context.LAYOUT_INFLATER_SERVICE;
-import static java.security.AccessController.getContext;
 
 /**
  * Created by PengBo  on 2017/2/4.
@@ -79,18 +73,16 @@ public class IndianaAdapter extends BaseAdapter {
        viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               com.tiantianle.PopupWindow popupWindow=new com.tiantianle.PopupWindow(activity,i);
-               popupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
-
-
-
-
+               /*com.tiantianle.custom.PopupWindow popupWindow=new com.tiantianle.custom.PopupWindow(activity,i);
+               popupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0)*/;
+               shuopopu();
            }
        });
         return view;
     }
 
 
+    //测试用的
     public void shuopopu(){
         mPopupWindow = new PopupWindow();
         View inflate1 = View.inflate(mContext, R.layout.item_popu_indinan_buy, null);
@@ -100,9 +92,6 @@ public class IndianaAdapter extends BaseAdapter {
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
-
-
-
     }
     static class ViewHolder {
         protected ImageView mImgAdapterIndiana;

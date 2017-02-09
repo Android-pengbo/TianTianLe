@@ -13,42 +13,73 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.R;
+import com.tiantianle.adapter.JiSuLiseFragmentAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by wyj on 2017/1/22.
+ * 极速28Fragment
  */
 
 public class JiSuFragment extends Fragment implements View.OnClickListener {
     protected View rootView;
-    protected TextView mTextJisu28;
+
     protected ImageView mBighMenu;
     protected TextView mBighText;
     protected ImageView mBighDown;
+    protected TextView mTextJisu28Fram;
+    protected ListView mListviewJisu28;
     private SlidingMenu menu;
     private PopupWindow mPopupWindow;
+    private int is[] = {333, 444, 555, 622, 513, 315};
+    private List<Integer> mList;
+    private JiSuLiseFragmentAdapter mJiSuLiseFragmentAdapter;
+
+    public JiSuFragment() {
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.item_fram_jisu, null, false);
         initView(rootView);
+        initData();
         FragmentActivity activity = getActivity();
         menu = (SlidingMenu) activity.findViewById(R.id.activity_main);
         return rootView;
     }
 
+    private void initData() {
+        mList = new ArrayList<>();
+        mJiSuLiseFragmentAdapter = new JiSuLiseFragmentAdapter();
+        for (int i = 0; i < is.length; i++) {
+            mList.add(is[i]);
+        }
+        mJiSuLiseFragmentAdapter.setList(mList);
+        mListviewJisu28.setAdapter(mJiSuLiseFragmentAdapter);
+        mJiSuLiseFragmentAdapter.notifyDataSetChanged();
+
+
+    }
+
+
     private void initView(View rootView) {
-        mTextJisu28 = (TextView) rootView.findViewById(R.id.text_jisu28);
+
         mBighMenu = (ImageView) rootView.findViewById(R.id.bigh_menu);
         mBighMenu.setOnClickListener(JiSuFragment.this);
         mBighText = (TextView) rootView.findViewById(R.id.bigh_text);
         mBighDown = (ImageView) rootView.findViewById(R.id.bigh_down);
         mBighDown.setOnClickListener(JiSuFragment.this);
+        mTextJisu28Fram = (TextView) rootView.findViewById(R.id.text_jisu28_fram);
+        mListviewJisu28 = (ListView) rootView.findViewById(R.id.listview_jisu28);
     }
 
     @Override
@@ -59,6 +90,7 @@ public class JiSuFragment extends Fragment implements View.OnClickListener {
             showpopuWindow();
         }
     }
+
     private void showpopuWindow() {
         mPopupWindow = new PopupWindow();
         View inflate1 = View.inflate(getContext(), R.layout.item_popuwindow, null);

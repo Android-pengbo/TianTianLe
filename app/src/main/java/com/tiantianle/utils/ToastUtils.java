@@ -41,6 +41,7 @@ public class ToastUtils {
     {
         if (isShow)
             Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
     }
 
     /**
@@ -53,6 +54,7 @@ public class ToastUtils {
     {
         if (isShow)
             Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+
     }
 
     /**
