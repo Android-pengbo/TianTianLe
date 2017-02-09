@@ -12,7 +12,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.tiantianle.R;
+import com.tiantianle.adapter.YiDongKaMiAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class YiDongKaMi extends AppCompatActivity implements View.OnClickListener {
@@ -31,15 +33,27 @@ public class YiDongKaMi extends AppCompatActivity implements View.OnClickListene
     protected LinearLayout mActivityYiDongKaMi;
     private List<String> mList;
     private String userid[] = {"1105", "1103", "1103", "1103", "1103", "1103", "1103", "1103"};
-
-
+    private YiDongKaMiAdapter mYiDongKaMiAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_yi_dong_ka_mi);
         initView();
+        initdate();
     }
 
+    private void initdate(){
+        mYiDongKaMiAdapter=new YiDongKaMiAdapter();
+        mList=new ArrayList<>();
+        for(int i=0;i<userid.length;i++){
+            mList.add(userid[i]);
+        }
+
+        mYiDongKaMiAdapter.setList(mList);
+        mListviewYidongkami.setAdapter(mYiDongKaMiAdapter);
+        mYiDongKaMiAdapter.notifyDataSetChanged();
+
+    }
     @Override
     public void onClick(View view) {
         if (view.getId() == R.id.img_yidongkami_back) {

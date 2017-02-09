@@ -3,7 +3,7 @@
               android:orientation="vertical"
               android:background="@color/colorText"
               android:layout_width="match_parent"
-              android:layout_height="300dp">
+              android:layout_height="wrap_content">
 
     <RelativeLayout
         android:layout_margin="10dp"
@@ -142,13 +142,16 @@
     </RelativeLayout>
 
 <Button
+    android:id="@+id/btn_queren_popu_indina"
     android:layout_width="350dp"
     android:layout_height="50dp"
     android:layout_marginTop="10dp"
     android:text="@string/goumai"
     android:textColor="@color/colorText"
-   android:layout_gravity="center"
+    android:layout_gravity="center"
+    android:layout_marginBottom="20dp"
     android:background="@drawable/btn_popu_indinan_cent_buy"/>
+
 
 
 </LinearLayout>

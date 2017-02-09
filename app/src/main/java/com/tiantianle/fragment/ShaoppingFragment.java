@@ -15,6 +15,8 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.R;
 import com.tiantianle.activity.JingDongEka;
 import com.tiantianle.activity.ShaoppingDuiHuanJiLu;
+import com.tiantianle.activity.ShiYouKami;
+import com.tiantianle.activity.YiDongKaMi;
 import com.tiantianle.adapter.JingDongEKaListAdapter;
 
 import java.util.ArrayList;
@@ -63,13 +65,14 @@ public class ShaoppingFragment extends Fragment implements View.OnClickListener 
             Intent intent=new Intent(getContext(), ShaoppingDuiHuanJiLu.class);
             startActivity(intent);
         } else if (view.getId() == R.id.suptertext_yidongkami) {
-
+            Intent intent=new Intent(getContext(), YiDongKaMi.class);
+            startActivity(intent);
         } else if (view.getId() == R.id.suptertext_jingdongkami) {
-
             Intent intent=new Intent(getContext(), JingDongEka.class);
             startActivity(intent);
         } else if (view.getId() == R.id.suptertext_shihuayoukami) {
-
+            Intent intent=new Intent(getContext(), ShiYouKami.class);
+            startActivity(intent);
         }
     }
 }

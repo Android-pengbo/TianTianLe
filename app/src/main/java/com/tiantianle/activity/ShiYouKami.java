@@ -12,7 +12,9 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.tiantianle.R;
+import com.tiantianle.adapter.ShiYouKaMiAdapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ShiYouKami extends AppCompatActivity implements View.OnClickListener {
@@ -32,13 +34,30 @@ public class ShiYouKami extends AppCompatActivity implements View.OnClickListene
     private List<String> mList;
     private String userid[] = {"1105", "1103", "1103", "1103", "1103", "1103", "1103", "1103"};
 
+    private ShiYouKaMiAdapter mShiYouKaMiAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_shi_you_kami);
         initView();
+        initdate();
     }
+
+    private void initdate(){
+        mShiYouKaMiAdapter =new ShiYouKaMiAdapter();
+        mList=new ArrayList<>();
+        for(int i=0;i<userid.length;i++){
+            mList.add(userid[i]);
+
+        }
+        mShiYouKaMiAdapter.setList(mList);
+        mListviewShiyoukami.setAdapter(mShiYouKaMiAdapter);
+        mShiYouKaMiAdapter.notifyDataSetChanged();
+
+
+    }
+
 
     @Override
     public void onClick(View view) {

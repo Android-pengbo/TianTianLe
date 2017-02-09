@@ -137,7 +137,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="15dp"
         android:layout_width="match_parent"
         android:layout_height="30dp"
         android:orientation="horizontal">
@@ -196,12 +196,12 @@
         android:id="@+id/btn_queren_yidongkami"
         android:text="@string/duihuanConfirm"
         android:layout_marginLeft="10dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="15dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/btn_qurenduihuan_jingdongeka"
         android:textColor="@color/colorText"
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:layout_height="40dp"/>
     <TextView
         android:text="@string/duihuanNewDongTai"
         android:textSize="16sp"
@@ -212,8 +212,9 @@
 
     <ListView
         android:id="@+id/listview_yidongkami"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:scrollbars="none"
+        android:layout_gravity="center"
         android:layout_marginTop="10dp"
         android:layout_height="0dp"
         android:layout_weight="1"></ListView>

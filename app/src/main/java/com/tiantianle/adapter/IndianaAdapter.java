@@ -1,6 +1,9 @@
 package com.tiantianle.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.support.v4.content.LocalBroadcastManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,17 +32,18 @@ import static java.security.AccessController.getContext;
  */
 
 public class IndianaAdapter extends BaseAdapter {
-
-
+    private Activity activity;
     private Context mContext;
     private List<Integer> mList;
     private PopupWindow mPopupWindow;
-
-    /*public IndianaAdapter(Context context,List<Integer>list){
+    private LocalBroadcastManager mLocalBroadcastManager;
+    public IndianaAdapter(List<Integer>list,Context context,Activity activity){
         super();
         this.mContext=context;
         this.mList=list;
-    }*/
+        this.activity=activity;
+    }
+
     public void setList(List<Integer> list) {
         mList = list;
     }
@@ -59,7 +63,7 @@ public class IndianaAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View convertView, final ViewGroup parent) {
+    public View getView(final int i, final View convertView, final ViewGroup parent) {
 
         View view = convertView;
         ViewHolder viewHolder = null;
@@ -72,75 +76,34 @@ public class IndianaAdapter extends BaseAdapter {
         }
         Integer integer = mList.get(i);
         Glide.with(parent.getContext()).load(integer).into(viewHolder.mImgAdapterIndiana);
-        switch (i) {
-            case 0:
+       viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               com.tiantianle.PopupWindow popupWindow=new com.tiantianle.PopupWindow(activity,i);
+               popupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
 
-                viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mPopupWindow = new PopupWindow();
-                        View inflate1 = View.inflate(parent.getContext(), R.layout.item_popu_indinan_buy, null);
-                        mPopupWindow.setContentView(inflate1);
-                        mPopupWindow.setHeight(WindowManager.LayoutParams.WRAP_CONTENT);
-                        mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setTouchable(true);
-                        mPopupWindow.setOutsideTouchable(true);
-                        Toast.makeText(parent.getContext(), "haha", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                break;
-            case 1:
-                viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mPopupWindow = new PopupWindow();
-                        View inflate1 = View.inflate(parent.getContext(), R.layout.item_popuwindow, null);
-                        mPopupWindow.setContentView(inflate1);
-                        mPopupWindow.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setTouchable(true);
-                        mPopupWindow.setOutsideTouchable(true);
-                        Toast.makeText(parent.getContext(), "haha", Toast.LENGTH_SHORT).show();
-                        
-                    }
-                });
-                break;
-            case 2:
-                viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mPopupWindow = new PopupWindow();
-                        View inflate1 = View.inflate(parent.getContext(), R.layout.item_popuwindow, null);
-                        mPopupWindow.setContentView(inflate1);
-                        mPopupWindow.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setTouchable(true);
-                        mPopupWindow.setOutsideTouchable(true);
-                        Toast.makeText(parent.getContext(), "haha", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                break;
 
-            case 3:
-                viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        mPopupWindow = new PopupWindow();
-                        View inflate1 = View.inflate(parent.getContext(), R.layout.item_popuwindow, null);
-                        mPopupWindow.setContentView(inflate1);
-                        mPopupWindow.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-                        mPopupWindow.setTouchable(true);
-                        mPopupWindow.setOutsideTouchable(true);
-                        Toast.makeText(parent.getContext(), "haha", Toast.LENGTH_SHORT).show();
-                    }
-                });
-                break;
-        }
 
+
+           }
+       });
         return view;
     }
 
+
+    public void shuopopu(){
+        mPopupWindow = new PopupWindow();
+        View inflate1 = View.inflate(mContext, R.layout.item_popu_indinan_buy, null);
+        mPopupWindow.setContentView(inflate1);
+        mPopupWindow.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
+        mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
+        mPopupWindow.setTouchable(true);
+        mPopupWindow.setOutsideTouchable(true);
+        mPopupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
+
+
+
+    }
     static class ViewHolder {
         protected ImageView mImgAdapterIndiana;
         protected ProgressBar mProgressBarAdapterIndiana;
@@ -150,11 +113,9 @@ public class IndianaAdapter extends BaseAdapter {
         protected TextView mTextShengyv;
         protected Button mBtnAdapterIndinanBuy;
         protected LinearLayout mLlWoshihaoren;
-
         ViewHolder(View rootView) {
             initView(rootView);
         }
-
         private void initView(View rootView) {
             mImgAdapterIndiana = (ImageView) rootView.findViewById(R.id.img_adapter_indiana);
             mProgressBarAdapterIndiana = (ProgressBar) rootView.findViewById(R.id.progressBar_adapter_indiana);
@@ -166,4 +127,5 @@ public class IndianaAdapter extends BaseAdapter {
             mLlWoshihaoren = (LinearLayout) rootView.findViewById(R.id.ll_woshihaoren);
         }
     }
+
 }

@@ -1,50 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
             android:background="@color/colorText"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorBackMemu"
+        >
+        <ImageView
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/bigh_menu"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/menu"/>
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:id="@+id/bigh_text"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:textColor="@color/colorText"
+            android:layout_height="wrap_content"
+            android:text="@string/HongBao"/>
+
+        <TextView
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_centerVertical="true"
+            android:textSize="13sp"
+            android:text="@string/RecordHongbao"
+            android:textColor="@color/colorText"
+            android:id="@+id/text_hongbao_record"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </RelativeLayout>
+    <ScrollView
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@color/colorBackMemu"
-            >
-            <ImageView
-                android:layout_marginLeft="10dp"
-                android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:id="@+id/bigh_menu"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/menu"/>
-
-            <TextView
-                android:layout_centerInParent="true"
-                android:id="@+id/bigh_text"
-                android:layout_width="wrap_content"
-                android:textSize="20sp"
-                android:textColor="@color/colorText"
-                android:layout_height="wrap_content"
-                android:text="@string/HongBao"/>
-
-            <TextView
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"
-                android:layout_centerVertical="true"
-                android:textSize="13sp"
-                android:text="@string/RecordHongbao"
-                android:textColor="@color/colorText"
-                android:id="@+id/text_hongbao_record"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                />
-        </RelativeLayout>
-
         <RelativeLayout
 
             android:layout_width="match_parent"
@@ -306,5 +309,5 @@
             android:layout_height="0dp"
             android:layout_weight="1"/>
     </LinearLayout>
-
-</ScrollView>
+    </ScrollView>
+</LinearLayout>
