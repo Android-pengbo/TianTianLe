@@ -53,12 +53,12 @@ public class JiSuLiseFragmentAdapter extends BaseAdapter {
 
         }
         Integer integer = mList.get(i);
-        viewHolder.mTextCountdownvHongbaoFram.start(100);
+
         return view;
     }
 
     static class ViewHolder {
-        protected CountdownView mTextCountdownvHongbaoFram;
+
         protected TextView mTextJiangchi;
         protected TextView mTextJiangchishuliang;
         protected TextView mTextDiJisuList;
@@ -66,14 +66,14 @@ public class JiSuLiseFragmentAdapter extends BaseAdapter {
         protected TextView mTextShuJisuList;
         protected TextView mTextTimeJisuList;
         protected TextView mTextLJisuList;
-        protected Button mBtnTouzhuJisuList;
+
 
         ViewHolder(View rootView) {
             initView(rootView);
         }
 
         private void initView(View rootView) {
-            mTextCountdownvHongbaoFram = (CountdownView) rootView.findViewById(R.id.text_countdownv_hongbao_fram);
+
             mTextJiangchi = (TextView) rootView.findViewById(R.id.text_jiangchi);
             mTextJiangchishuliang = (TextView) rootView.findViewById(R.id.text_jiangchishuliang);
             mTextDiJisuList = (TextView) rootView.findViewById(R.id.text_di_jisu_list);
@@ -81,7 +81,7 @@ public class JiSuLiseFragmentAdapter extends BaseAdapter {
             mTextShuJisuList = (TextView) rootView.findViewById(R.id.text_shu_jisu_list);
             mTextTimeJisuList = (TextView) rootView.findViewById(R.id.text_time_jisu_list);
             mTextLJisuList = (TextView) rootView.findViewById(R.id.text_l_jisu_list);
-            mBtnTouzhuJisuList = (Button) rootView.findViewById(R.id.btn_touzhu_jisu_list);
+
         }
     }
 }

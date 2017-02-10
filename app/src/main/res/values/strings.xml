@@ -62,5 +62,5 @@
 
 
     <!--刷新-->
-    <string name="pull_to_refresh_footer_pull_label" >上拉加载更多</string>
+    <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
 </resources>

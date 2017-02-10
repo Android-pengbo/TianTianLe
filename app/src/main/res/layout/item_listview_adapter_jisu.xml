@@ -8,28 +8,30 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="3dp"
         >
-        <cn.iwgang.countdownview.CountdownView
-            android:layout_marginLeft="10dp"
-            android:id="@+id/text_countdownv_hongbao_fram"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:isHideTimeBackground="true"
-            app:isShowSecond="true"
-            app:timeTextColor="@color/colorText"
-            app:timeTextSize="12sp"
-            app:isTimeTextBold="true"
-            app:suffixTextColor="@color/colorText"
-            app:suffixTextSize="12sp"
-            app:suffixSecond="秒"
-            app:suffixSecondLeftMargin="0dp"
-            android:background="@mipmap/backred"
-            />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="550秒"
+                android:textSize="12sp"
+                android:textColor="@color/colorText"
+                android:gravity="center"
+                android:layout_marginLeft="10dp"
+                android:background="@mipmap/backred"
+                android:layout_height="40dp"/>
+        </LinearLayout>
+
         <RelativeLayout
             android:layout_marginLeft="5dp"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="40dp">
+            android:layout_height="45dp">
             <TextView
                 android:layout_marginTop="3dp"
                 android:id="@+id/text_jiangchi"
@@ -91,39 +93,24 @@
                 android:text="0/28"
                 android:layout_marginRight="10dp"
                 android:layout_marginTop="5dp"
-                  android:textSize="7sp"
+                android:textSize="7sp"
                 android:layout_alignParentRight="true"
                 android:layout_below="@id/text_time_jisu_list"
                 android:gravity="center"
                 android:background="@mipmap/biligray"
-                android:layout_width="25dp"
-                android:layout_height="15dp"/>
-
-            <Button
-                android:id="@+id/btn_touzhu_jisu_list"
-                android:text="投注"
-                android:textSize="10sp"
-                android:textColor="@color/colorText"
-                android:layout_marginRight="6dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@id/text_time_jisu_list"
-                android:background="@drawable/my_button_tuichu"
-                android:layout_width="30dp"
+                android:layout_width="27dp"
                 android:layout_height="20dp"/>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
+                android:layout_marginTop="2dp"
                 android:layout_alignParentBottom="true"
                 android:background="@color/progressbarNomal"
                 />
 
         </RelativeLayout>
 
-
-
     </LinearLayout>
-
-
-
 
 </RelativeLayout>
