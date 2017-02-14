@@ -89,7 +89,7 @@ public class ToastUtils {
      * @param message
      * @param duration
      */
-    public static void show(Context context, int message, int duration)
+    public static void show(Context context, String message, int duration)
     {
         if (isShow)
             Toast.makeText(context, message, duration).show();

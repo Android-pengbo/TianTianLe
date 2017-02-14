@@ -14,6 +14,8 @@ public final class Constant {
         public static String account = "18217614361"; //手机号
 
         public static String imei = "123454"; //唯一设备号
+//     密码   qaz123
+
 
     }
 

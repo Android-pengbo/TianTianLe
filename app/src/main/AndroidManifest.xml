@@ -32,6 +32,10 @@
         <activity android:name=".activity.ShiYouKami">
         </activity>
 
+        <!--登录界面-->
+        <activity android:name=".activity.LoginActivity">
+        </activity>
+
         <!-- 我的消息-->
        <activity android:name=".activity.MessageActivity">
         </activity>
@@ -39,6 +43,23 @@
         <!-- 我的消息二级界面-->
         <activity android:name=".activity.SpecificMessageActivity">
         </activity>
+
+        <!-- 密码设置-->
+        <activity android:name=".activity.PasswordActivity">
+        </activity>
+
+        <!--修改登录密码-->
+        <activity android:name=".activity.ModifyLoginPasswordActivity">
+        </activity>
+
+        <!--修改交易密码-->
+        <activity android:name=".activity.ModifyTradingPasswordActivity">
+        </activity>
+
+        <!--短信验证-->
+        <activity android:name=".activity.MessageAuthenticationActivity">
+        </activity>
+
 
     </application>
 

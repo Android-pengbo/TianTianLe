@@ -1,10 +1,13 @@
 package com.tiantianle;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
@@ -15,13 +18,13 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 public class BaseActivity extends AppCompatActivity {
     public Gson gs;;
+    private Dialog progressDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         gs = new Gson();
-
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             //透明状态栏
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
@@ -38,9 +41,28 @@ public class BaseActivity extends AppCompatActivity {
             tintManager.setStatusBarTintResource(R.color.colorBackMemu);
             //Apply the specified drawable or color resource to the system navigation bar.
             //给导航栏设置资源
+
         }
 
+    }
 
-
+    //打开Dialog
+    public void showDialog(Context context,String str) {
+        progressDialog = new Dialog(context);
+        progressDialog.setContentView(R.layout.dolog);
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent);
+        TextView msg = (TextView) progressDialog
+                .findViewById(R.id.tv_loadingmsg);
+        msg.setText(str);
+        progressDialog.setCanceledOnTouchOutside(false);
+        progressDialog.show();
+    }
+    //关闭Dialog
+    public void closeDialog() {
+        if(progressDialog !=null){
+            System.out.println("关闭Dialog！");
+            progressDialog.dismiss();
+        }
     }
 }

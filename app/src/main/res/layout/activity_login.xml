@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clipToPadding="true"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context="com.tiantianle.activity.LoginActivity">
+
+    <include layout="@layout/title_red"></include>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        android:background="@color/stroke_unchecked_color"></View>
+
+    <EditText
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:drawableLeft="@mipmap/number"
+        android:drawablePadding="10dp"
+        android:gravity="center_vertical"
+        android:hint="@string/Input_Number"
+        android:paddingLeft="30dp" />
+    <view
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#CDCDCD"></view>
+
+</LinearLayout>

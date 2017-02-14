@@ -48,6 +48,12 @@ public class IntentUtils {
         intent.putExtra("three", three);
         packageContext.startActivity(intent);
     }
+    //传递类对象  类一定要实现序列化Serializable
+    public static void goTo(Context packageContext, Class<?> cls, Boolean bool) {
+        Intent intent = new Intent(packageContext, cls);
+        intent.putExtra("bool",bool);
+        packageContext.startActivity(intent);
+    }
 
     //传递类对象  类一定要实现序列化Serializable
     public static void goTo(Context packageContext, Class<?> cls, Object object) {

@@ -59,6 +59,34 @@
     <string name="duihuanSuoXuMoDou">所需魔豆:</string>
     <string name="MyMessage">我的消息</string>
     <string name="MyMessage_delete">清空</string>
+    
+    <string name="Input_Number">请输入电话号码</string>
+
+
+    <!--密码设置-->
+    <string name="Modify_login_password">修改登录密码</string>
+    <string name="Modify_trading_password">修改交易密码</string>
+
+    <string name="OiginalPassword">原登录密码</string>
+    <string name="Oiginal_Transaction_Password">原交易密码</string>
+
+    <string name="New_Password">新登录密码</string>
+    <string name="New_Transaction_Password">新交易密码</string>
+
+    <string name="Confirm_Password">确认登录密码</string>
+    <string name="Confirm_Transaction_Password">确认交易密码</string>
+
+
+    <string name="Message_Authentication">选择其他方式(短信)验证</string>
+    <string name="Password_Authentication">选择其他方式(密码)验证</string>
+
+    <string name="Transaction_prompt">修改登录密码前请先完成短信验证,将发送验证到</string>
+    <string name="Trading_prompt">修改交易密码前请先完成短信验证,将发送验证到</string>
+
+    <string name="Confirm_Change">确认修改</string>
+    <string name="code">验证码</string>
+    <string name="get_code">点击获取验证码</string>
+    <string name="Please_Password">请输入密码</string>
 
 
     <!--刷新-->

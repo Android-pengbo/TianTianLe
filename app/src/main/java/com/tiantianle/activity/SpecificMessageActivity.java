@@ -55,6 +55,8 @@ public class SpecificMessageActivity extends BaseActivity{
 
     private void SetData() {
 
+        tv_deletes_title.setVisibility(View.VISIBLE);
+
         tv_deletes_title.setText("删除");
 
         tv_title.setText(message.getTitle());

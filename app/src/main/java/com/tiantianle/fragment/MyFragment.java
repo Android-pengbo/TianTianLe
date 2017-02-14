@@ -14,7 +14,9 @@ import android.widget.TextView;
 import com.allen.library.SuperTextView;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.R;
+import com.tiantianle.activity.LoginActivity;
 import com.tiantianle.activity.MessageActivity;
+import com.tiantianle.activity.PasswordActivity;
 import com.tiantianle.utils.IntentUtils;
 
 /**
@@ -78,10 +80,14 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
         } else if (view.getId() == R.id.supertext_password) {//密码设置
 
+            IntentUtils.goTo(getActivity(), PasswordActivity.class);
+
         } else if (view.getId() == R.id.suptertext_recharges) {//魔豆充值
 
         } else if (view.getId() == R.id.suptertext_about) {//关于
 
+        }else if(view.getId() == R.id.btn_back){ //退出登录
+            IntentUtils.goTo(getActivity(), LoginActivity.class);
         }
     }
 }
