@@ -36,7 +36,6 @@ public class PopupWindow extends android.widget.PopupWindow {
     protected Button mBtnPopuIndinaBut50;
     protected Button mBtnPopuIndinaBut100;
     protected Button mBtnQuerenPopuIndina;
-    private AmountView mAmountView;
 
 
     public PopupWindow(final Activity context, int i) {
@@ -50,8 +49,8 @@ public class PopupWindow extends android.widget.PopupWindow {
         mBtnPopuIndinaBut20 = (Button) mInflate.findViewById(R.id.btn_popu_indina_but_20);
         mBtnPopuIndinaBut50 = (Button) mInflate.findViewById(R.id.btn_popu_indina_but_50);
         mBtnPopuIndinaBut100 = (Button) mInflate.findViewById(R.id.btn_popu_indina_but_100);
-        mAmountView= (AmountView) mInflate.findViewById(R.id.amount_view);
-        mAmountView.setGoods_storage(200);
+
+
 
         //设置SelectPicPopupWindow的View
         this.setContentView(mInflate);

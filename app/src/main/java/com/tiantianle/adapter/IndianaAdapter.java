@@ -18,6 +18,8 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.tiantianle.R;
+import com.tiantianle.intface.MyInterface;
+import com.tiantianle.intface.UserPopuwindow;
 
 import java.util.List;
 
@@ -31,11 +33,14 @@ public class IndianaAdapter extends BaseAdapter {
     private List<Integer> mList;
     private PopupWindow mPopupWindow;
     private LocalBroadcastManager mLocalBroadcastManager;
-    public IndianaAdapter(List<Integer>list,Context context,Activity activity){
+    private UserPopuwindow mUserPopuwindow;
+    public IndianaAdapter(List<Integer>list, Context context, Activity activity, MyInterface myInterface){
         super();
         this.mContext=context;
         this.mList=list;
         this.activity=activity;
+        mUserPopuwindow=new UserPopuwindow();
+        mUserPopuwindow.setMyInterface(myInterface);
     }
 
     public void setList(List<Integer> list) {
@@ -73,16 +78,17 @@ public class IndianaAdapter extends BaseAdapter {
        viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               /*com.tiantianle.custom.PopupWindow popupWindow=new com.tiantianle.custom.PopupWindow(activity,i);
-               popupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0)*/;
-               shuopopu();
+
+               mUserPopuwindow.userPopu();
+
+
            }
        });
         return view;
     }
 
 
-    //测试用的
+   /* //测试用的
     public void shuopopu(){
         mPopupWindow = new PopupWindow();
         View inflate1 = View.inflate(mContext, R.layout.item_popu_indinan_buy, null);
@@ -92,7 +98,7 @@ public class IndianaAdapter extends BaseAdapter {
         mPopupWindow.setTouchable(true);
         mPopupWindow.setOutsideTouchable(true);
         mPopupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
-    }
+    }*/
     static class ViewHolder {
         protected ImageView mImgAdapterIndiana;
         protected ProgressBar mProgressBarAdapterIndiana;
