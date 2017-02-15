@@ -24,6 +24,10 @@ public interface HttpApi {
 
     String GET_CODE = API + "/appaccount/sendsms";//发送短信
 
+    String INDIANAFRAGMENT=API+"/changeware/getchangeware";//夺宝系统
+    String BUY_INDIANAFRAGMENT=API+"/changeware/addchangeware";//购买接口
+
+
 
 
 

@@ -63,7 +63,6 @@ public class MessageBean implements Serializable {
         this.state = state;
     }
 
-
     public List<message> getBiz_content() {
 
         return biz_content;

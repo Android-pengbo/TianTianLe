@@ -111,13 +111,12 @@ public class MessageActivity extends BaseActivity {
         params.addParameter("account", Constant.Config.account);
         params.addParameter("page", page + "");
         params.addParameter("imei", Constant.Config.imei);
-
+        LogUtil.e("url = " + params.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
             @Override
             public void onSuccess(String result) {
-
                 LogUtil.e("联网成功 == " + result.toString());
 
                 try {
@@ -174,8 +173,6 @@ public class MessageActivity extends BaseActivity {
         lv_message = (ListView) findViewById(R.id.lv_message);
         ll_message = (PullToRefreshView) findViewById(R.id.ll_message);
 
-        tv_deletes_title.setVisibility(View.VISIBLE);
-
         img_back_title.setOnClickListener(new MyOnClickListener());
         tv_deletes_title.setOnClickListener(new MyOnClickListener());
         lv_message.setOnItemClickListener(new MyOnItemClickListener());
@@ -211,6 +208,7 @@ public class MessageActivity extends BaseActivity {
         RequestParams params = new RequestParams(HttpApi.MY_MESSAGE_DELETE_ALL);
         params.addParameter("account", Constant.Config.account);
         params.addParameter("imei", Constant.Config.imei);
+        LogUtil.e("url = " + params.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
@@ -224,16 +222,12 @@ public class MessageActivity extends BaseActivity {
 
                     if (jsonObject.get("state").equals("success") && jsonObject.get("biz_content").equals("删除成功")) {
 
-                        if (bean != null && bean.size() > 0) {
-                            bean.clear();
-                            adapter.notifyDataSetChanged();
-                        }
-                        ToastUtils.showShort(MessageActivity.this, jsonObject.get("biz_content").toString());
-
+                    if (bean != null && bean.size() > 0) {
+                        bean.clear();
+                        adapter.notifyDataSetChanged();
+                    }
                     } else {
-
                         ToastUtils.showShort(MessageActivity.this, jsonObject.get("biz_content").toString());
-
                     }
 
 

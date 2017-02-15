@@ -17,6 +17,11 @@ public final class Constant {
 //     密码   qaz123
 
 
+        public static String type1="1";//夺宝商品
+
+        public static String tyoe0="0";//对换商品
+
+
     }
 
 }
