@@ -1,22 +1,18 @@
 package com.tiantianle.fragment;
 
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.LocalBroadcastManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
@@ -26,13 +22,21 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.tiantianle.Bean.IndinanBean;
 import com.tiantianle.R;
 import com.tiantianle.activity.IndianaRember;
 import com.tiantianle.adapter.IndianaAdapter;
 import com.tiantianle.intface.MyInterface;
+import com.tiantianle.utils.Constant;
+import com.tiantianle.utils.HttpApi;
+import com.tiantianle.utils.ToastUtils;
 
-import java.util.ArrayList;
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
+
 import java.util.List;
 
 /**
@@ -50,7 +54,6 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
     protected GridView mGridFramIndiana;
     private IndianaAdapter mIndianaAdapter;
     private int[] img = {R.mipmap.modou1,R.mipmap.modou2,R.mipmap.modou3,R.mipmap.modou4};
-    private List<Integer> mList;
     private PopupWindow mPopupWindow;
     private Button  mButtonAdd;
     private Button  mButtonRed;
@@ -63,6 +66,9 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
     private int goods_storage = 200; //商品库存
     private Button mQueren;
     private ImageView mCloss;
+    // private String imei;
+    private List<IndinanBean.BizContentBean> mList;
+
 
     @Nullable
     @Override
@@ -70,14 +76,64 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
         rootView = inflater.inflate(R.layout.item_fram_indiana, null, false);
         mMenu = (SlidingMenu) getActivity().findViewById(R.id.activity_main);
         initView(rootView);
-        addImgs();
+        HttpData();
+      /*  Bundle arguments = getArguments();
+        imei = arguments.getString("iemi");*/
         return rootView;
     }
 
-    //添加图片
-    private void addImgs() {
+    //添加商品
+    private void HttpData() {
+        RequestParams params = new RequestParams(HttpApi.INDIANAFRAGMENT);
+        params.addParameter("account", Constant.Config.account);
+        params.addParameter("page", 1+ "");
+        params.addParameter("imei", Constant.Config.imei);
+        params.addParameter("type", Constant.Config.type1);
 
-        mList = new ArrayList<>();
+        x.http().post(params, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+
+                Gson gson=new Gson();
+                IndinanBean riNiMa = gson.fromJson(result, IndinanBean.class);
+                Log.e("返回结果", result);
+                if(riNiMa.getState().equals("success")){
+                    mList=riNiMa.getBiz_content();
+                    mIndianaAdapter=new IndianaAdapter(mList,  new MyInterface() {
+                        @Override
+                        public void showPopuwindow() {
+                            showpopuWindow();
+                        }
+                    });
+                    mGridFramIndiana.setAdapter(mIndianaAdapter);
+                    mIndianaAdapter.notifyDataSetChanged();
+
+                }else if(riNiMa.getState().equals("error")){
+                    ToastUtils.showShort(getContext(),"缺少请求参数");
+                }
+
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Log.e("onError", ex.getMessage());
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+       /* mList = new ArrayList<>();
         for (int i = 0; i < img.length; i++) {
             mList.add(img[i]);
         }
@@ -89,7 +145,7 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
         });
         mGridFramIndiana.setAdapter(mIndianaAdapter);
         mIndianaAdapter.notifyDataSetChanged();
-
+*/
     }
         private void showpopuWindow() {
             mPopupWindow = new PopupWindow();
@@ -120,13 +176,6 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
                 }
             });
             mEditTextNum= (EditText) inflate1.findViewById(R.id.eid_popu_indinan_buy);
-
-            /**
-             * private  Button mFive;
-             private Button mTwenty;
-             private Button mFifty;
-             private Button  mHundred;
-             */
             mFive= (Button) inflate1.findViewById(R.id.btn_popu_indina_but_5);
             mFive.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -164,6 +213,8 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
                 @Override
                 public void onClick(View view) {
                     Toast.makeText(getContext(),"购买了"+amount+"个商品",Toast.LENGTH_SHORT).show();
+                    amount=1;
+                    mEditTextNum.setText(amount+"");
                 }
             });
             mCloss= (ImageView) inflate1.findViewById(R.id.img_popu_indina_buy_closs);

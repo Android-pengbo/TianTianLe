@@ -2,21 +2,18 @@ package com.tiantianle.adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.v4.content.LocalBroadcastManager;
-import android.view.Gravity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.PopupWindow;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
+import com.tiantianle.Bean.IndinanBean;
 import com.tiantianle.R;
 import com.tiantianle.intface.MyInterface;
 import com.tiantianle.intface.UserPopuwindow;
@@ -30,22 +27,21 @@ import java.util.List;
 public class IndianaAdapter extends BaseAdapter {
     private Activity activity;
     private Context mContext;
-    private List<Integer> mList;
-    private PopupWindow mPopupWindow;
-    private LocalBroadcastManager mLocalBroadcastManager;
+    private List<IndinanBean.BizContentBean> mList;
     private UserPopuwindow mUserPopuwindow;
-    public IndianaAdapter(List<Integer>list, Context context, Activity activity, MyInterface myInterface){
+
+    public IndianaAdapter(List<IndinanBean.BizContentBean> list , MyInterface myInterface) {
         super();
-        this.mContext=context;
-        this.mList=list;
-        this.activity=activity;
-        mUserPopuwindow=new UserPopuwindow();
+        this.mList = list;
+
+        mUserPopuwindow = new UserPopuwindow();
         mUserPopuwindow.setMyInterface(myInterface);
     }
 
-    public void setList(List<Integer> list) {
+    public void setList(List<IndinanBean.BizContentBean> list) {
         mList = list;
     }
+
     @Override
     public int getCount() {
         return mList == null ? 0 : mList.size();
@@ -73,34 +69,34 @@ public class IndianaAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        Integer integer = mList.get(i);
-        Glide.with(parent.getContext()).load(integer).into(viewHolder.mImgAdapterIndiana);
-       viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
+        IndinanBean.BizContentBean bizContentBean = mList.get(i);
+        String specname = bizContentBean.getSpecname();
+        specname = specname.substring(0, specname.length()-2);
+        viewHolder.mTextSpecname0Indinan.setText(specname);
+        String issuenum = bizContentBean.getIssuenum();
+        String replace = issuenum.replace(bizContentBean.getSpeccode(), "");
+        viewHolder.mTextIssuenumIndinana.setText(replace+"期");
+        viewHolder.mTextAdapterIndianaZongxu.setText(bizContentBean.getUsernum()+"");
+        viewHolder.mTextAdapterIndianaShengyv.setText(bizContentBean.getUsernum()-bizContentBean.getPlaynum()+"");
+        viewHolder.mProgressBarAdapterIndiana.setMax(bizContentBean.getUsernum());
+        viewHolder.mProgressBarAdapterIndiana.setProgress(30);
+        viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-               mUserPopuwindow.userPopu();
+                mUserPopuwindow.userPopu();
 
 
-           }
-       });
+            }
+        });
         return view;
     }
 
-
-   /* //测试用的
-    public void shuopopu(){
-        mPopupWindow = new PopupWindow();
-        View inflate1 = View.inflate(mContext, R.layout.item_popu_indinan_buy, null);
-        mPopupWindow.setContentView(inflate1);
-        mPopupWindow.setHeight(WindowManager.LayoutParams.MATCH_PARENT);
-        mPopupWindow.setWidth(WindowManager.LayoutParams.MATCH_PARENT);
-        mPopupWindow.setTouchable(true);
-        mPopupWindow.setOutsideTouchable(true);
-        mPopupWindow.showAtLocation(activity.findViewById(R.id.radiob_trend_main),Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
-    }*/
     static class ViewHolder {
         protected ImageView mImgAdapterIndiana;
+        protected TextView mTextSpecname0Indinan;
+        protected TextView mTextSpecname1Indinan;
+        protected TextView mTextIssuenumIndinana;
         protected ProgressBar mProgressBarAdapterIndiana;
         protected TextView mTextZongxu;
         protected TextView mTextAdapterIndianaZongxu;
@@ -108,11 +104,16 @@ public class IndianaAdapter extends BaseAdapter {
         protected TextView mTextShengyv;
         protected Button mBtnAdapterIndinanBuy;
         protected LinearLayout mLlWoshihaoren;
+
         ViewHolder(View rootView) {
             initView(rootView);
         }
+
         private void initView(View rootView) {
             mImgAdapterIndiana = (ImageView) rootView.findViewById(R.id.img_adapter_indiana);
+            mTextSpecname0Indinan = (TextView) rootView.findViewById(R.id.text_specname0_indinan);
+            mTextSpecname1Indinan = (TextView) rootView.findViewById(R.id.text_specname1_indinan);
+            mTextIssuenumIndinana = (TextView) rootView.findViewById(R.id.text_issuenum_indinana);
             mProgressBarAdapterIndiana = (ProgressBar) rootView.findViewById(R.id.progressBar_adapter_indiana);
             mTextZongxu = (TextView) rootView.findViewById(R.id.text_zongxu);
             mTextAdapterIndianaZongxu = (TextView) rootView.findViewById(R.id.text_adapter_indiana_zongxu);
@@ -122,5 +123,4 @@ public class IndianaAdapter extends BaseAdapter {
             mLlWoshihaoren = (LinearLayout) rootView.findViewById(R.id.ll_woshihaoren);
         }
     }
-
 }

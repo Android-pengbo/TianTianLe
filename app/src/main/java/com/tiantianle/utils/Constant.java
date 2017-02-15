@@ -15,6 +15,11 @@ public final class Constant {
 
         public static String imei = "123454"; //唯一设备号
 
+        public static String type1="1";//夺宝商品
+
+        public static String tyoe0="0";//对换商品
+
+
     }
 
 }

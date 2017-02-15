@@ -17,6 +17,10 @@ public interface HttpApi {
 
     String MY_MESSAGE_DELETE = API + "/api/delmessage/"; //删除一个消息接口
 
+    String INDIANAFRAGMENT=API+"/changeware/getchangeware";//夺宝系统
+    String BUY_INDIANAFRAGMENT=API+"/changeware/addchangeware";//购买接口
+
+
 
 
 

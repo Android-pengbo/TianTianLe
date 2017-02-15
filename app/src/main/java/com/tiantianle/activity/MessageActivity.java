@@ -107,11 +107,9 @@ public class MessageActivity extends BaseActivity {
 
     private void HttpData() {
         RequestParams params = new RequestParams(HttpApi.MY_MESSAGE);
-
         params.addParameter("account", Constant.Config.account);
         params.addParameter("page", page + "");
         params.addParameter("imei", Constant.Config.imei);
-        LogUtil.e("url = " + params.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
