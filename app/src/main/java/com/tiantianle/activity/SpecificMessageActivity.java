@@ -103,11 +103,13 @@ public class SpecificMessageActivity extends BaseActivity{
     //删除
     private void getHttpDelete() {
 
+        showDialog(SpecificMessageActivity.this,"正在加载...",false);
+
         RequestParams params = new RequestParams(HttpApi.MY_MESSAGE_DELETE);
         params.addParameter("account", Constant.Config.account);
         params.addParameter("imei",Constant.Config.imei);
         params.addParameter("msgid", message.getMsgid());
-//        LogUtil.e("url = " + params.toString() + "ssss");
+
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
@@ -119,9 +121,10 @@ public class SpecificMessageActivity extends BaseActivity{
                     JSONObject jsonObject = new JSONObject(result);
 
 
-                    if(jsonObject.get("state").equals("success") && jsonObject.get("biz_content").equals("删除成功")){
+                    if(jsonObject.get("state").equals("success")){
 
                         YesDelete();
+                        ToastUtils.showShort(SpecificMessageActivity.this,jsonObject.get("biz_content").toString());
 
                     }else{
                         ToastUtils.showShort(SpecificMessageActivity.this,jsonObject.get("biz_content").toString());
@@ -154,6 +157,7 @@ public class SpecificMessageActivity extends BaseActivity{
             @Override
             public void onFinished() {
                 LogUtil.e("onFinished == ");
+                closeDialog();
             }
         });
 
@@ -167,6 +171,4 @@ public class SpecificMessageActivity extends BaseActivity{
         setResult(RESULT_OK, mIntent);
         finish();
     }
-
-
 }

@@ -106,12 +106,14 @@ public class MessageActivity extends BaseActivity {
     }
 
     private void HttpData() {
-        RequestParams params = new RequestParams(HttpApi.MY_MESSAGE);
 
+        showDialog(MessageActivity.this,"正在加载...",false);
+
+        RequestParams params = new RequestParams(HttpApi.MY_MESSAGE);
+        LogUtil.e("account = " + Constant.Config.account);
         params.addParameter("account", Constant.Config.account);
         params.addParameter("page", page + "");
         params.addParameter("imei", Constant.Config.imei);
-        LogUtil.e("url = " + params.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
@@ -162,6 +164,8 @@ public class MessageActivity extends BaseActivity {
             public void onFinished() {
                 LogUtil.e("onFinished == ");
                 onLoad();
+                closeDialog();
+
             }
         });
 
@@ -172,6 +176,8 @@ public class MessageActivity extends BaseActivity {
         tv_deletes_title = (TextView) findViewById(R.id.tv_deletes_title);
         lv_message = (ListView) findViewById(R.id.lv_message);
         ll_message = (PullToRefreshView) findViewById(R.id.ll_message);
+
+        tv_deletes_title.setVisibility(View.VISIBLE);
 
         img_back_title.setOnClickListener(new MyOnClickListener());
         tv_deletes_title.setOnClickListener(new MyOnClickListener());
@@ -205,10 +211,11 @@ public class MessageActivity extends BaseActivity {
     private void getHttpDelete() {
 
         //清空个人消息
+
+        showDialog(MessageActivity.this,"正在加载...",false);
         RequestParams params = new RequestParams(HttpApi.MY_MESSAGE_DELETE_ALL);
         params.addParameter("account", Constant.Config.account);
         params.addParameter("imei", Constant.Config.imei);
-        LogUtil.e("url = " + params.toString());
         x.http().post(params, new Callback.CommonCallback<String>() {
 
             //请求成功
@@ -220,12 +227,16 @@ public class MessageActivity extends BaseActivity {
                     JSONObject jsonObject = new JSONObject(result);
 
 
-                    if (jsonObject.get("state").equals("success") && jsonObject.get("biz_content").equals("删除成功")) {
+                    if (jsonObject.get("state").equals("success")) {
 
-                    if (bean != null && bean.size() > 0) {
-                        bean.clear();
-                        adapter.notifyDataSetChanged();
-                    }
+
+                        if (bean != null && bean.size() > 0) {
+                            bean.clear();
+                            adapter.notifyDataSetChanged();
+                        }
+
+                        ToastUtils.showShort(MessageActivity.this, jsonObject.get("biz_content").toString());
+
                     } else {
                         ToastUtils.showShort(MessageActivity.this, jsonObject.get("biz_content").toString());
                     }
@@ -255,6 +266,7 @@ public class MessageActivity extends BaseActivity {
             @Override
             public void onFinished() {
                 LogUtil.e("onFinished == ");
+                closeDialog();
             }
         });
 

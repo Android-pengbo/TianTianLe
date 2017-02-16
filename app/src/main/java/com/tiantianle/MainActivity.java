@@ -2,25 +2,26 @@ package com.tiantianle;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.LocalBroadcastManager;
-import android.support.v7.app.AppCompatActivity;
 import android.telephony.TelephonyManager;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.fragment.HallFragment;
 import com.tiantianle.fragment.MyFragment;
 import com.tiantianle.fragment.ShaoppingFragment;
 import com.tiantianle.fragment.TrendFragment;
+import com.tiantianle.utils.Constant;
+
+import org.xutils.common.util.LogUtil;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -45,7 +46,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ShaoppingFragment mShaoppingFragment;
     private MyFragment mMyFragment;
     private LocalBroadcastManager mLocalBroadcastManager;
-    private String  imei;
+
+    public static SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,9 +60,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initTrend();
         initMe();
         addFragment();
-       /* TelephonyManager telephonyManager=(TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
-        imei=telephonyManager.getDeviceId();*/
 
+        //设置手机唯一设备号
+        TelephonyManager telephonyManager=(TelephonyManager) this.getSystemService(Context.TELEPHONY_SERVICE);
+       Constant.Config.imei = telephonyManager.getDeviceId();
+
+        sp = getSharedPreferences("ttl_sp",Context.MODE_PRIVATE);
+        Constant.Config.account = sp.getString("account",null);
+        Constant.Config.password = sp.getString("password",null);
+        LogUtil.e("MainActivity account = " +  Constant.Config.account + "password = " + Constant.Config.password);
     }
 
     private void addFragment(){

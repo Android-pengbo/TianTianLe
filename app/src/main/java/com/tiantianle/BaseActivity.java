@@ -17,7 +17,7 @@ import com.readystatesoftware.systembartint.SystemBarTintManager;
  */
 
 public class BaseActivity extends AppCompatActivity {
-    public Gson gs;;
+    public Gson gs;
     private Dialog progressDialog;
 
     @Override
@@ -47,7 +47,7 @@ public class BaseActivity extends AppCompatActivity {
     }
 
     //打开Dialog
-    public void showDialog(Context context,String str) {
+    public void showDialog(Context context, String str,Boolean bool) {
         progressDialog = new Dialog(context);
         progressDialog.setContentView(R.layout.dolog);
         progressDialog.getWindow().setBackgroundDrawableResource(
@@ -55,9 +55,17 @@ public class BaseActivity extends AppCompatActivity {
         TextView msg = (TextView) progressDialog
                 .findViewById(R.id.tv_loadingmsg);
         msg.setText(str);
+        if (bool) {
+
+            //设置dialog点击返回键也不会消失
+            progressDialog.setCancelable(false);
+        }
+
         progressDialog.setCanceledOnTouchOutside(false);
+
         progressDialog.show();
     }
+
     //关闭Dialog
     public void closeDialog() {
         if(progressDialog !=null){

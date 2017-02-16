@@ -48,6 +48,8 @@ public class ModifyLoginPasswordActivity extends BaseActivity {
 
     private Boolean ifbool = true;//true为修改登录密码  false为修改交易密码
 
+    private String New_Password;//新登录密码  新交易密码
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -128,8 +130,8 @@ public class ModifyLoginPasswordActivity extends BaseActivity {
     private void getHttpData() {
 
         String OiginalPassword = et_OiginalPassword.getText().toString();
-        String New_Password = et_New_Password.getText().toString();
         String Confirm_Password = et_Confirm_Password.getText().toString();
+        New_Password = et_New_Password.getText().toString();
 
         if (TextUtils.isEmpty(OiginalPassword)) {
             ToastUtils.show(ModifyLoginPasswordActivity.this, "原密码不能为空!", 2000);
@@ -146,7 +148,7 @@ public class ModifyLoginPasswordActivity extends BaseActivity {
             return;
         }
 
-        showDialog(ModifyLoginPasswordActivity.this, "努力加载中...");
+        showDialog(ModifyLoginPasswordActivity.this, "努力加载中...",false);
 
         RequestParams params = null;
         if(ifbool){
@@ -176,6 +178,10 @@ public class ModifyLoginPasswordActivity extends BaseActivity {
                 try {
                     JSONObject jsonObject = new JSONObject(result);
                     if (jsonObject.get("state").toString().equals("success")) {
+
+                        if (ifbool) {
+                            Constant.Config.password = New_Password;
+                        }
 
                         ToastUtils.showShort(ModifyLoginPasswordActivity.this, "修改成功!");
                         finish();
