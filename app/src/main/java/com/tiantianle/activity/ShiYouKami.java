@@ -1,6 +1,7 @@
 package com.tiantianle.activity;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -35,25 +36,34 @@ public class ShiYouKami extends Activity implements View.OnClickListener {
     protected ListView mListviewShiyoukami;
     protected LinearLayout mActivityShiYouKami;
     protected FlowLayout mMFlowLayout;
+    protected TextView mTextTatilname;
     private List<String> mList;
     private List<Flow> mFlowList;
     private String userid[] = {"1105", "1103", "1103", "1103", "1103", "1103", "1103", "1103"};
-
     private ShiYouKaMiAdapter mShiYouKaMiAdapter;
 
+    private String warename;
+    private String warecode;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         super.setContentView(R.layout.activity_shi_you_kami);
         initView();
         initdate();
-        initDate();;
+        initDate();
+        Intent intent = getIntent();
+        warename=intent.getStringExtra("warename");
+        warecode=intent.getStringExtra("warecode");
+      mTextTatilname.setText(warename);
+
     }
+
     private void initDate() {
         mFlowList = getPhoneList();
         mMFlowLayout.setFlowData(mFlowList);
 
     }
+
     public List<Flow> getPhoneList() {
         List<Flow> list = new ArrayList<>();
         Flow mFlow = new FlowEntity("1", "10元");
@@ -105,5 +115,6 @@ public class ShiYouKami extends Activity implements View.OnClickListener {
         mListviewShiyoukami = (ListView) findViewById(R.id.listview_shiyoukami);
         mActivityShiYouKami = (LinearLayout) findViewById(R.id.activity_shi_you_kami);
         mMFlowLayout = (FlowLayout) findViewById(R.id.mFlowLayout);
+        mTextTatilname = (TextView) findViewById(R.id.text_tatilname);
     }
 }

@@ -1,10 +1,16 @@
 package com.tiantianle.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -27,6 +33,9 @@ public class IndianaRember extends AppCompatActivity implements View.OnClickList
     protected LinearLayout mActivityIndianaRember;
     private IndinanFragmentAdapter mFragmentAdapter;
     private List<Fragment> mList;
+    private LocalBroadcastManager mLocalBroadcastManager;
+    private AdapterBroadcast mReceiver;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +43,12 @@ public class IndianaRember extends AppCompatActivity implements View.OnClickList
         super.setContentView(R.layout.activity_indiana_rember);
         initView();
         initTaV();
+        mLocalBroadcastManager=LocalBroadcastManager.getInstance(this);
+        mReceiver = new AdapterBroadcast();
+        IntentFilter filter = new IntentFilter();
+        filter.addAction("com.tiantianle.adapter");
+        mLocalBroadcastManager.registerReceiver(mReceiver, filter);
+
     }
 
     private void initView() {
@@ -63,5 +78,19 @@ public class IndianaRember extends AppCompatActivity implements View.OnClickList
         if (view.getId() == R.id.img_indianaRember_back) {
             finish();
         }
+    }
+
+    class AdapterBroadcast extends BroadcastReceiver{
+
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            finish();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mLocalBroadcastManager.unregisterReceiver(mReceiver);
     }
 }
