@@ -108,9 +108,10 @@ public class MessageAuthenticationActivity extends BaseActivity {
                     System.out.println("code = " + code);
                     String number = tv_number.getText().toString();
 
-                    if (VerificationUtil.isValidTelNumber(number)) {
-                        ToastUtils.show(MessageAuthenticationActivity.this, "手机号不正确!", 3000);
+                    if (!VerificationUtil.isValidTelNumber(number)) {
+                        ToastUtils.show(MessageAuthenticationActivity.this, "手机号不正确!", 2000);
                     } else {
+                        time.start();
                         getHttpData();
                     }
 
@@ -147,6 +148,7 @@ public class MessageAuthenticationActivity extends BaseActivity {
         params.addParameter("code", et_code.getText().toString());
         params.addParameter("password", et_password.getText().toString());
         params.addParameter("type", "1");
+        showDialog(MessageAuthenticationActivity.this,"努力加载中...",false);
 
         x.http().post(params, new Callback.CommonCallback<String>() {
 

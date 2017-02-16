@@ -60,7 +60,21 @@
     <string name="MyMessage">我的消息</string>
     <string name="MyMessage_delete">清空</string>
     
-    <string name="Input_Number">请输入电话号码</string>
+    <!--登陆界面-->
+    <string name="Input_Number">请输入手机号码</string>
+    <string name="Input_Password">请输入密码</string>
+    <string name="Login_Immediately">立即登录</string>
+    <string name="Forgot_Password">忘记密码?</string>
+    <string name="Register_Now">立即注册</string>
+    
+    <string name="Forgot_Passwords">忘记密码</string>
+    <string name="Please_Code">请输入验证码</string>
+    <string name="Please_New_Password">请输入新的登录密码</string>
+    <string name="Obtain_Code">获取验证码</string>
+    <string name="Reset_Password">重置密码</string>
+    
+    <string name="Registered">注册</string>
+    <string name="Please_Passwords">请输入登录密码</string>
 
 
     <!--密码设置-->
@@ -76,7 +90,6 @@
     <string name="Confirm_Password">确认登录密码</string>
     <string name="Confirm_Transaction_Password">确认交易密码</string>
 
-
     <string name="Message_Authentication">选择其他方式(短信)验证</string>
     <string name="Password_Authentication">选择其他方式(密码)验证</string>
 
@@ -88,6 +101,11 @@
     <string name="get_code">点击获取验证码</string>
     <string name="Please_Password">请输入密码</string>
 
+    <!--修改个人信息-->
+    <string name="Click_Modify_Head">点击修改头像</string>
+    <string name="Nickname">昵称：</string>
+    <string name="Signature">签名：</string>
+    <string name="Trade_Password">交易密码：</string>
 
     <!--刷新-->
     <string name="pull_to_refresh_footer_pull_label">上拉加载更多</string>
