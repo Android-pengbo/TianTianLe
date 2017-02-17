@@ -10,9 +10,11 @@ public interface HttpApi {
 
     String API = "http://192.168.1.192:8022"; //主地址
 
-   //String API = "http://192.168.1.192:24528/";  //测试地址
+//   String API = "http://192.168.1.192:24528/";  //测试地址
 
     //  宗
+
+    String HOME_PAGE_INFORMATION = API + "/appaccount/homedata"; // 主页信息
 
     String USER_INFOTMATION = API + "/appaccount/userinfo";// 用户信息
 
@@ -30,7 +32,7 @@ public interface HttpApi {
 
     String CHANGE_PASSWORD = API + "/appaccount/updatepwd"; //修改登录密码
 
-    String MODIFY_trading_PASSWORD = API + "/appaccount/drawpwd"; //修改交易密码
+    String MODIFY_TRADING_PASSWORD = API + "/appaccount/drawpwd"; //修改交易密码
 
     String GET_CODE = API + "/appaccount/sendsms";//发送短信
 
@@ -40,7 +42,9 @@ public interface HttpApi {
 
     String BALANCE = API + "/api/getmoney"; // 余额
 
-    String HOME_PAGE_INFORMATION = API + "/appaccount/homedata"; // 主页信息
+    String RED_LIST = API + "/RedPacke/GetRedPackeList";//获取红包列表
+
+    String GRAD_RED_ENVELOPE = API + "/RedPacke/GrabRedPacke"; //抢红包
 
 
     // 彭博

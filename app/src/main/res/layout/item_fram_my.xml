@@ -22,7 +22,7 @@
                 android:id="@+id/img_my_userHeard"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@mipmap/ic_launcher"
+                android:src="@mipmap/tx"
                 app:riv_border_color="@color/colorText"
                 app:riv_border_width="2dp"
                 app:riv_oval="true" />
@@ -32,8 +32,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
+                android:layout_marginTop="5dp"
                 android:textColor="@color/colorText"
-                android:text="名字"/>
+                android:text="@string/Click_Login"/>
 
             <TextView
                 android:id="@+id/tv_signature"
@@ -41,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="@color/colorText"
-                android:text="签名"/>
+                android:text=""/>
 
         </LinearLayout>
 

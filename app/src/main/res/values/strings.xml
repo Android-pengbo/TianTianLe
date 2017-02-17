@@ -41,6 +41,8 @@
     <string name="julihongbao">距离下一场抢红包</string>
     <string name="hongbaochangci1">第一场</string>
     <string name="hongbaochangci2">第二场</string>
+    <string name="hongbaochangci3">第三场</string>
+    <string name="hongbaoTime">00:00</string>
     <string name="hongbaoDongtai">红包动态</string>
     <string name="userID">用户ID</string>
     <string name="jine">红包金额</string>
@@ -103,6 +105,7 @@
 
     <!--修改个人信息-->
     <string name="Click_Modify_Head">点击修改头像</string>
+    <string name="Click_Login">点击登录</string>
     <string name="Nickname">昵称：</string>
     <string name="Signature">签名：</string>
     <string name="Trade_Password">交易密码：</string>

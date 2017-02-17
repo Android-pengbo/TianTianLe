@@ -83,9 +83,11 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     @Override
     public void onResume() {
         super.onResume();
-        getHttpData(); //获取头像 签名 昵称
+        if(!TextUtils.isEmpty(Constant.Config.account)){
+            getHttpData(); //获取头像 签名 昵称
+            getHttpHomeData();// 获取魔豆
+        }
 
-        getHttpHomeData();// 获取魔豆
     }
 
 

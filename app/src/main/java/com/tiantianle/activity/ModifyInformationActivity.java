@@ -356,6 +356,5 @@ public class ModifyInformationActivity extends BaseActivity {
                 closeDialog();
             }
         });
-
     }
 }
