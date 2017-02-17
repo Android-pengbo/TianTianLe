@@ -54,6 +54,7 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
     protected SlidingMenu mMenu;
     protected GridView mGridFramIndiana;
     private IndianaAdapter mIndianaAdapter;
+    private int[] img = {R.mipmap.modou1,R.mipmap.modou2,R.mipmap.modou3,R.mipmap.modou4};
     private PopupWindow mPopupWindow;
     private Button  mButtonAdd;
     private Button  mButtonRed;
@@ -95,15 +96,15 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
         x.http().post(params, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-
                 Gson gson=new Gson();
                 IndinanBean riNiMa = gson.fromJson(result, IndinanBean.class);
                 if(riNiMa.getState().equals("success")){
                     mList=riNiMa.getBiz_content();
                     mIndianaAdapter=new IndianaAdapter(mList,  new MyInterface() {
                         @Override
-                        public void showPopuwindow(int changeid,String issuenum,String warecode,String warename,String speccode,String specname,double price,int type,String ordercode, int usernum,int playnum) {
+                        public void showPopuwindow(int changeid,String issuenum,String warecode,String warename,String speccode,String specname,double price,int type,String ordercode,int usernum,int playnum) {
                             goods_storage=usernum-playnum;
+                            Log.e("这是剩余的",goods_storage+"");
                             showpopuWindow(changeid,issuenum,warecode,warename,speccode,specname,price,type,ordercode);
                         }
                     });
@@ -146,8 +147,6 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
                     if (amount <goods_storage) {
                         amount++;
                         mEditTextNum.setText(amount + "");
-                    }else if(amount>goods_storage){
-                        ToastUtils.showShort(getContext(),"购买上限");
                     }
                 }
             });
@@ -242,6 +241,7 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
                     amount=1;
                     mEditTextNum.setText(amount+"");
                     mPopupWindow.dismiss();
+
                 }
             });
             mCloss= (ImageView) inflate1.findViewById(R.id.img_popu_indina_buy_closs);
@@ -267,8 +267,6 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
             });
             mPopupWindow.showAtLocation(getActivity().findViewById(R.id.radiob_trend_main), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
         }
-
-
 
     private void initView(View rootView) {
 

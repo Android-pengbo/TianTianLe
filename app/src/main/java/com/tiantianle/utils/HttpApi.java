@@ -8,7 +8,7 @@ package com.tiantianle.utils;
 
 public interface HttpApi {
 
-    String API = "http://192.168.1.192:8022"; //主地址
+  String API = "http://192.168.1.192:8022"; //主地址
 
 //   String API = "http://192.168.1.192:24528/";  //测试地址
 
@@ -50,11 +50,11 @@ public interface HttpApi {
     // 彭博
 
     String INDIANAFRAGMENT=API+"/changeware/getchangeware";//夺宝系统
-
     String BUY_INDIANAFRAGMENT=API+"/changeware/addchangeware";//购买接口
     String  REMB_ALL=API+"/changeware/getuserorder";//夺宝记录 全部
     String SHAOPPING=API+"/changeware/getwarelist";//兑换商城
     String SHAOPPINGREMB=API+"/changeware/getwareskulist";//兑换记录
+    String  MINGXI=API+"/changeware/getwareskulist";             //兑换明细
 
 
 

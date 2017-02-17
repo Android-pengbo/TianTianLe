@@ -22,7 +22,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.google.gson.Gson;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.tiantianle.Bean.UserInformationBean;
 import com.tiantianle.MainActivity;
 import com.tiantianle.R;
@@ -53,7 +52,7 @@ public class MyFragment extends Fragment implements View.OnClickListener {
     private Dialog progressDialog;
 
     protected View rootView;
-    protected RoundedImageView mImgMyUserHeard; //头像
+    //protected RoundedImageView mImgMyUserHeard; //头像
 
     protected TextView tv_name; //昵称
     protected TextView tv_signature; //签名
@@ -92,8 +91,8 @@ public class MyFragment extends Fragment implements View.OnClickListener {
 
 
     private void initView(View rootView) {
-        mImgMyUserHeard = (RoundedImageView) rootView.findViewById(R.id.img_my_userHeard);
-        mImgMyUserHeard.setOnClickListener(MyFragment.this);
+//        mImgMyUserHeard = (RoundedImageView) rootView.findViewById(R.id.img_my_userHeard);
+//        mImgMyUserHeard.setOnClickListener(MyFragment.this);
         tv_name = (TextView) rootView.findViewById(R.id.tv_name);
         tv_signature = (TextView) rootView.findViewById(R.id.tv_signature);
         mBtnBack = (Button) rootView.findViewById(R.id.btn_back);
@@ -155,10 +154,10 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                 Constant.Config.account = null;
                 Constant.Config.password = null;
 
-                SharedPreferences.Editor editor = MainActivity.sp.edit();
-                editor.putString("account", null);
-                editor.putString("password", null);
-                editor.commit();
+//                SharedPreferences.Editor editor = MainActivity.sp.edit();
+//                editor.putString("account", null);
+//                editor.putString("password", null);
+//                editor.commit();
 
                 IntentUtils.goTo(getActivity(), LoginActivity.class);
 
@@ -235,13 +234,13 @@ public class MyFragment extends Fragment implements View.OnClickListener {
                     .centerCrop()
                     .placeholder(R.mipmap.tx)
                     .error(R.mipmap.tx)
-                    .into(new BitmapImageViewTarget(mImgMyUserHeard) {
+                    .into(new BitmapImageViewTarget(null) {
                         @Override
                         protected void setResource(Bitmap resource) {
                             RoundedBitmapDrawable circularBitmapDrawable =
                                     RoundedBitmapDrawableFactory.create(getActivity().getResources(), resource);
                             circularBitmapDrawable.setCircular(true);
-                            mImgMyUserHeard.setImageDrawable(circularBitmapDrawable);
+                          //  null.setImageDrawable(circularBitmapDrawable);
                         }
                     });
 

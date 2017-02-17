@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.tiantianle.Bean.NewDongTaiBean;
 import com.tiantianle.R;
 import com.tiantianle.adapter.IndinanFragmentAdapter;
 import com.tiantianle.fragment.AllFragmentIndinanrember;
@@ -35,6 +36,8 @@ public class IndianaRember extends AppCompatActivity implements View.OnClickList
     private List<Fragment> mList;
     private LocalBroadcastManager mLocalBroadcastManager;
     private AdapterBroadcast mReceiver;
+    private List<NewDongTaiBean.BizContentBean> mBizContentBeen=new ArrayList<>();
+    private List<NewDongTaiBean.BizContentBean>mRes;
 
 
     @Override

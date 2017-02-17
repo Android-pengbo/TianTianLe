@@ -32,9 +32,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:layout_marginTop="5dp"
                 android:textColor="@color/colorText"
-                android:text="@string/Click_Login"/>
+                android:text="名字"/>
 
             <TextView
                 android:id="@+id/tv_signature"
@@ -42,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:textSize="13sp"
                 android:textColor="@color/colorText"
-                android:text=""/>
+                android:text="签名"/>
 
         </LinearLayout>
 

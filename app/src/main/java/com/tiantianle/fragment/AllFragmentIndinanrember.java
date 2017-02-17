@@ -72,7 +72,6 @@ public class AllFragmentIndinanrember extends Fragment {
     private  double totalfee=0;
     private String content="";
     public static AllFragmentIndinanrember newInstance() {
-
         Bundle args = new Bundle();
         AllFragmentIndinanrember fragment = new AllFragmentIndinanrember();
         fragment.setArguments(args);
@@ -220,6 +219,7 @@ public class AllFragmentIndinanrember extends Fragment {
                 x.http().post(entity, new Callback.CommonCallback<String>() {
                     @Override
                     public void onSuccess(String result) {
+                        Log.e("这是夺宝记录",result);
                         Gson  gson=new Gson();
                         IndianaBuy indianaBuy = gson.fromJson(result, IndianaBuy.class);
                         if(indianaBuy.getState().equals("success")){

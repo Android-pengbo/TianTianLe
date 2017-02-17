@@ -6,7 +6,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.tiantianle.Bean.NewDongTaiBean;
 import com.tiantianle.R;
+import com.tiantianle.intface.DuiHuan;
+import com.tiantianle.intface.UserDuiHuanRemb;
 
 import java.util.List;
 
@@ -15,9 +18,17 @@ import java.util.List;
  */
 
 public class YiDongKaMiAdapter extends BaseAdapter {
-    private List<String> mList;
+    private List<NewDongTaiBean.BizContentBean> mList;
+    private UserDuiHuanRemb mUserDuiHuanRemb;
 
-    public void setList(List<String> list) {
+    public YiDongKaMiAdapter(DuiHuan duiHuan) {
+        mUserDuiHuanRemb = new UserDuiHuanRemb();
+        mUserDuiHuanRemb.setDuiHuan(duiHuan);
+
+
+    }
+
+    public void setList(List<NewDongTaiBean.BizContentBean> list) {
         mList = list;
     }
 
@@ -47,14 +58,18 @@ public class YiDongKaMiAdapter extends BaseAdapter {
         } else {
             viewHolder = (ViewHolder) view.getTag();
         }
-        String s = mList.get(i);
-        viewHolder.mTextUserIdListadpterJingdongeka.setText(s);
+        NewDongTaiBean.BizContentBean bizContentBean = mList.get(i);
+        mUserDuiHuanRemb.UserDuiTotal(bizContentBean.getTotalcount());
+        viewHolder.mTextTimeDontaiListJingdongeka.setText(bizContentBean.getCreatetime());
+        viewHolder.mTextUserIdListadpterJingdongeka.setText(bizContentBean.getNickname());
+        viewHolder.mTextDuihuanListadaterJingdongeka.setText("兑换"+bizContentBean.getSpecname()+bizContentBean.getWarename());
         return view;
     }
 
     static class ViewHolder {
         protected TextView mTextListJingdongeka;
         protected TextView mTextUserIdListadpterJingdongeka;
+        protected TextView mTextDuihuanListadaterJingdongeka;
         protected TextView mTextTimeDontaiListJingdongeka;
 
         ViewHolder(View rootView) {
@@ -64,6 +79,7 @@ public class YiDongKaMiAdapter extends BaseAdapter {
         private void initView(View rootView) {
             mTextListJingdongeka = (TextView) rootView.findViewById(R.id.text_list_jingdongeka);
             mTextUserIdListadpterJingdongeka = (TextView) rootView.findViewById(R.id.text_userId_listadpter_jingdongeka);
+            mTextDuihuanListadaterJingdongeka = (TextView) rootView.findViewById(R.id.text_duihuan_listadater_jingdongeka);
             mTextTimeDontaiListJingdongeka = (TextView) rootView.findViewById(R.id.text_time_dontai_list_jingdongeka);
         }
     }

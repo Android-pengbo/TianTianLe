@@ -175,10 +175,10 @@ public class ForgotPasswordActivity extends BaseActivity {
                         Constant.Config.account = number;
                         Constant.Config.account = password;
 
-                        SharedPreferences.Editor editor = MainActivity.sp.edit();
-                        editor.putString("account", number);
-                        editor.putString("password", password);
-                        editor.commit();
+//                        SharedPreferences.Editor editor = MainActivity.sp.edit();
+//                        editor.putString("account", number);
+//                        editor.putString("password", password);
+//                        editor.commit();
                         IntentUtils.goTo(ForgotPasswordActivity.this, MainActivity.class);
                     } else {
                         ToastUtils.showShort(ForgotPasswordActivity.this, jsonObject.get("biz_content").toString());

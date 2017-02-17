@@ -58,12 +58,12 @@ public class ShaoppingFragment extends Fragment implements View.OnClickListener 
         mListviewShaoppingAdapter .setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Log.e("点击了",i+"ge");
                 warename=mBizContentBeen.get(i).getWarename();
                 warecode=mBizContentBeen.get(i).getWarecode();
                 Intent intent=new Intent(getActivity(), YiDongKaMi.class);
                 intent.putExtra("warename",warename);
                 intent.putExtra("warecode",warecode);
+                intent.putExtra("","");
                 startActivity(intent);
 
             }
@@ -77,10 +77,7 @@ public class ShaoppingFragment extends Fragment implements View.OnClickListener 
         mTextExchangeRecord = (TextView) rootView.findViewById(R.id.text_exchange_record);
         mTextExchangeRecord.setOnClickListener(ShaoppingFragment.this);
         mListviewShaoppingAdapter = (ListView) rootView.findViewById(R.id.listview_shaopping_adapter);
-
     }
-
-
     private void HttpData(){
         RequestParams entity = new RequestParams(HttpApi.SHAOPPING);
         entity.addParameter("account", Constant.Config.account);
@@ -90,7 +87,6 @@ public class ShaoppingFragment extends Fragment implements View.OnClickListener 
         x.http().post(entity, new Callback.CommonCallback<String>() {
             @Override
             public void onSuccess(String result) {
-                Log.e("兑换商城",result);
                 Gson gson=new Gson();
                 ShaoppingBean shaoppingBean = gson.fromJson(result, ShaoppingBean.class);
                 if(shaoppingBean.getState().equals("success")){
