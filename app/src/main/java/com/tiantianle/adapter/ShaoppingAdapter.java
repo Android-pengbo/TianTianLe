@@ -4,8 +4,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
-import com.allen.library.SuperTextView;
 import com.tiantianle.Bean.ShaoppingBean;
 import com.tiantianle.R;
 
@@ -24,7 +24,7 @@ public class ShaoppingAdapter extends BaseAdapter {
 
     @Override
     public int getCount() {
-        return mList==null?0:mList.size();
+        return mList == null ? 0 : mList.size();
     }
 
     @Override
@@ -49,21 +49,20 @@ public class ShaoppingAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) view.getTag();
         }
         ShaoppingBean.BizContentBean bizContentBean = mList.get(i);
-        viewHolder.mSuptertextShaoppingAdapter.setLeftString(bizContentBean.getWarename());
-
+         viewHolder.mTextTatleShaopping.setText(bizContentBean.getWarename());
 
         return view;
     }
 
     static class ViewHolder {
-        protected SuperTextView mSuptertextShaoppingAdapter;
+        protected TextView mTextTatleShaopping;
 
         ViewHolder(View rootView) {
             initView(rootView);
         }
 
         private void initView(View rootView) {
-            mSuptertextShaoppingAdapter = (SuperTextView) rootView.findViewById(R.id.suptertext_shaopping_adapter);
+            mTextTatleShaopping = (TextView) rootView.findViewById(R.id.text_tatle_shaopping);
         }
     }
 }

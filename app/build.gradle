@@ -39,5 +39,5 @@ dependencies {
     compile 'org.xutils:xutils:3.3.40'
     compile 'cn.lemon:countdownview:0.1.0'
     compile 'com.dalong:flowlayout:1.0.3'
-    compile 'com.makeramen:roundedimageview:2.3.0'
+    compile project(':pulltorefresh')
 }
