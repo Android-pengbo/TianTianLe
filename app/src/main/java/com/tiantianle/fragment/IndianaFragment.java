@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.tiantianle.Bean.IndianaBuy;
 import com.tiantianle.Bean.IndinanBean;
 import com.tiantianle.R;
 import com.tiantianle.activity.IndianaRember;
@@ -53,7 +54,6 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
     protected SlidingMenu mMenu;
     protected GridView mGridFramIndiana;
     private IndianaAdapter mIndianaAdapter;
-    private int[] img = {R.mipmap.modou1,R.mipmap.modou2,R.mipmap.modou3,R.mipmap.modou4};
     private PopupWindow mPopupWindow;
     private Button  mButtonAdd;
     private Button  mButtonRed;
@@ -63,11 +63,13 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
     private Button mFifty;
     private Button  mHundred;
     private int amount = 1; //购买数量
-    private int goods_storage = 200; //商品库存
+    private int goods_storage; //商品库存
     private Button mQueren;
     private ImageView mCloss;
     // private String imei;
     private List<IndinanBean.BizContentBean> mList;
+    private  double totalfee=0;
+    private String content="";
 
 
     @Nullable
@@ -96,13 +98,13 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
 
                 Gson gson=new Gson();
                 IndinanBean riNiMa = gson.fromJson(result, IndinanBean.class);
-                Log.e("返回结果", result);
                 if(riNiMa.getState().equals("success")){
                     mList=riNiMa.getBiz_content();
                     mIndianaAdapter=new IndianaAdapter(mList,  new MyInterface() {
                         @Override
-                        public void showPopuwindow() {
-                            showpopuWindow();
+                        public void showPopuwindow(int changeid,String issuenum,String warecode,String warename,String speccode,String specname,double price,int type,String ordercode, int usernum,int playnum) {
+                            goods_storage=usernum-playnum;
+                            showpopuWindow(changeid,issuenum,warecode,warename,speccode,specname,price,type,ordercode);
                         }
                     });
                     mGridFramIndiana.setAdapter(mIndianaAdapter);
@@ -130,24 +132,8 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-
-
-
-       /* mList = new ArrayList<>();
-        for (int i = 0; i < img.length; i++) {
-            mList.add(img[i]);
-        }
-        mIndianaAdapter = new IndianaAdapter(mList, getContext(), this.getActivity(), new MyInterface() {
-            @Override
-            public void showPopuwindow() {
-                showpopuWindow();
-            }
-        });
-        mGridFramIndiana.setAdapter(mIndianaAdapter);
-        mIndianaAdapter.notifyDataSetChanged();
-*/
     }
-        private void showpopuWindow() {
+        private void showpopuWindow(final int changeid, final String issuenum, final String warecode, final String warename, final String speccode, final String specname, final double price, final int type, final String ordercode) {
             mPopupWindow = new PopupWindow();
             View inflate1 = View.inflate(getContext(), R.layout.item_popu_indinan_buy, null);
             mPopupWindow.setContentView(inflate1);
@@ -157,11 +143,12 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
                 public void onClick(View view) {
 
                     amount = Integer.parseInt( mEditTextNum.getText().toString());
-                    if (amount < goods_storage) {
+                    if (amount <goods_storage) {
                         amount++;
                         mEditTextNum.setText(amount + "");
+                    }else if(amount>goods_storage){
+                        ToastUtils.showShort(getContext(),"购买上限");
                     }
-
                 }
             });
             mButtonRed= (Button) inflate1.findViewById(R.id.btn_popu_indina_buy_red);
@@ -212,9 +199,49 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
             mQueren.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Toast.makeText(getContext(),"购买了"+amount+"个商品",Toast.LENGTH_SHORT).show();
+                    totalfee=amount*price;
+                    RequestParams entity = new RequestParams(HttpApi.BUY_INDIANAFRAGMENT);
+                    entity.addParameter("account", Constant.Config.account);
+                    entity.addParameter("imei", Constant.Config.imei);
+                    entity.addParameter("type", type+"");
+                    entity.addParameter("changeid",changeid);
+                    entity.addParameter("issuenum",issuenum);
+                    entity.addParameter("warecode",warecode+"");
+                    entity.addParameter("warename",warename);
+                    entity.addParameter("speccode",speccode);
+                    entity.addParameter("specname",specname);
+                    entity.addParameter("price",price);
+                    entity.addParameter("ordercode",ordercode);
+                    entity.addParameter("num",amount);
+                    entity.addParameter("content",content);
+                    entity.addParameter("totalfee",totalfee);
+
+                    x.http().post(entity, new Callback.CommonCallback<String>() {
+                        @Override
+                        public void onSuccess(String result) {
+                            Gson  gson=new Gson();
+                            IndianaBuy indianaBuy = gson.fromJson(result, IndianaBuy.class);
+                            if(indianaBuy.getState().equals("success")){
+                                ToastUtils.showShort(getContext(),indianaBuy.getBiz_content());
+
+                            }else if (indianaBuy.getState().equals("error")){
+                                ToastUtils.showShort(getContext(),indianaBuy.getBiz_content());
+                            }
+                        }
+                        @Override
+                        public void onError(Throwable ex, boolean isOnCallback) {
+                            Log.e("onError购买", ex.getMessage());
+                        }
+                        @Override
+                        public void onCancelled(CancelledException cex) {
+                        }
+                        @Override
+                        public void onFinished() {
+                        }
+                    });
                     amount=1;
                     mEditTextNum.setText(amount+"");
+                    mPopupWindow.dismiss();
                 }
             });
             mCloss= (ImageView) inflate1.findViewById(R.id.img_popu_indina_buy_closs);
@@ -240,6 +267,7 @@ public class IndianaFragment extends Fragment implements View.OnClickListener {
             });
             mPopupWindow.showAtLocation(getActivity().findViewById(R.id.radiob_trend_main), Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL,0,0);
         }
+
 
 
     private void initView(View rootView) {

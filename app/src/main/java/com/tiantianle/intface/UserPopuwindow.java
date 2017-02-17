@@ -9,7 +9,7 @@ public class UserPopuwindow {
     public void setMyInterface(MyInterface myInterface){
         mMyInterface=myInterface;
     }
-    public void userPopu(){
-        mMyInterface.showPopuwindow();
+    public void userPopu(int changeid,String issuenum,String warecode,String warename,String speccode,String specname,double price,int type,String ordercode ,int usernum,int playnum){
+        mMyInterface.showPopuwindow(changeid,issuenum,warecode,warename,speccode,specname,price,type,ordercode,usernum,playnum);
     }
 }

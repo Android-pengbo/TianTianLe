@@ -5,5 +5,5 @@ package com.tiantianle.intface;
  */
 
 public interface MyInterface {
-    void showPopuwindow();
+    void showPopuwindow(int changeid,String issuenum,String warecode,String warename,String speccode,String specname,double price,int type,String ordercode ,int usernum,int playnum );
 }

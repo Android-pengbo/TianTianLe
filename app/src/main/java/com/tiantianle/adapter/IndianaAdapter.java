@@ -18,6 +18,8 @@ import com.tiantianle.R;
 import com.tiantianle.intface.MyInterface;
 import com.tiantianle.intface.UserPopuwindow;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -29,11 +31,11 @@ public class IndianaAdapter extends BaseAdapter {
     private Context mContext;
     private List<IndinanBean.BizContentBean> mList;
     private UserPopuwindow mUserPopuwindow;
+    private String nain;
 
     public IndianaAdapter(List<IndinanBean.BizContentBean> list , MyInterface myInterface) {
         super();
         this.mList = list;
-
         mUserPopuwindow = new UserPopuwindow();
         mUserPopuwindow.setMyInterface(myInterface);
     }
@@ -54,7 +56,7 @@ public class IndianaAdapter extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
@@ -68,8 +70,8 @@ public class IndianaAdapter extends BaseAdapter {
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
-        }
-        IndinanBean.BizContentBean bizContentBean = mList.get(i);
+    }
+        final IndinanBean.BizContentBean bizContentBean = mList.get(i);
         String specname = bizContentBean.getSpecname();
         specname = specname.substring(0, specname.length()-2);
         viewHolder.mTextSpecname0Indinan.setText(specname);
@@ -79,19 +81,24 @@ public class IndianaAdapter extends BaseAdapter {
         viewHolder.mTextAdapterIndianaZongxu.setText(bizContentBean.getUsernum()+"");
         viewHolder.mTextAdapterIndianaShengyv.setText(bizContentBean.getUsernum()-bizContentBean.getPlaynum()+"");
         viewHolder.mProgressBarAdapterIndiana.setMax(bizContentBean.getUsernum());
-        viewHolder.mProgressBarAdapterIndiana.setProgress(30);
+        viewHolder.mProgressBarAdapterIndiana.setProgress(bizContentBean.getPlaynum());
         viewHolder.mBtnAdapterIndinanBuy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                mUserPopuwindow.userPopu();
-
-
+                Log.e("点击了第",i+"");
+                Getime();
+                mUserPopuwindow.userPopu(bizContentBean.getChangeid(),bizContentBean.getIssuenum(),bizContentBean.getWarecode(),bizContentBean.getWarename(),bizContentBean.getSpeccode(),bizContentBean.getSpecname(),bizContentBean.getPrice(),bizContentBean.getType(),nain,bizContentBean.getUsernum(),bizContentBean.getPlaynum());
             }
         });
         return view;
     }
 
+    //系统时间做为订单编号
+    private void Getime(){
+        SimpleDateFormat format=new SimpleDateFormat("yyyyMMddHHmmss");
+        Date    curDate    =   new Date(System.currentTimeMillis());
+        nain=format.format(curDate);
+    }
     static class ViewHolder {
         protected ImageView mImgAdapterIndiana;
         protected TextView mTextSpecname0Indinan;

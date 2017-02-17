@@ -13,7 +13,7 @@ import java.util.ArrayList;
 public class IndinanFragmentAdapter extends FragmentStatePagerAdapter {
 
     private ArrayList<Fragment> mFragments;
-    private String str[]={"全部(1)","进行中","已揭晓"};
+    private String str[]={"全部","进行中","已揭晓"};
     public IndinanFragmentAdapter(FragmentManager fm) {
         super(fm);
     }
