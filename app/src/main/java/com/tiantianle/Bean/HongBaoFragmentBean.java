@@ -4,6 +4,8 @@ import java.util.List;
 
 /**
  * Created by Administrator on 2017/2/17.
+ *
+ * 红包列表  bean
  */
 public class HongBaoFragmentBean {
     /**

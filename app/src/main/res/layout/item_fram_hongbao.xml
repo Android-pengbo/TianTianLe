@@ -41,6 +41,11 @@
             android:textSize="13sp" />
     </RelativeLayout>
 
+    <com.tiantianle.view.PullToRefreshView
+        android:id="@+id/ll_hongbao"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -321,4 +326,6 @@
                 android:layout_weight="1" />
         </LinearLayout>
     </ScrollView>
+
+    </com.tiantianle.view.PullToRefreshView>
 </LinearLayout>

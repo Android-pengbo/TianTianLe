@@ -17,6 +17,7 @@ public final class Constant {
       // public static String imei = "123454"; //唯一设备号   密码   qaz123
         public static String imei = "8888";
         public static String Head = null; //头像
+
         public static String type1="1";//夺宝商品
         public static String tyoe0="0";//对换商品
 

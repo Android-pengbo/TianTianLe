@@ -8,9 +8,9 @@ package com.tiantianle.utils;
 
 public interface HttpApi {
 
-  String API = "http://192.168.1.192:8022"; //主地址
+  String API = "http://192.168.1.194:8022"; //主地址
 
-//   String API = "http://192.168.1.192:24528/";  //测试地址
+//   String API = "http://192.168.1.194:24528/";  //测试地址
 
     //  宗
 
@@ -45,6 +45,8 @@ public interface HttpApi {
     String RED_LIST = API + "/RedPacke/GetRedPackeList";//获取红包列表
 
     String GRAD_RED_ENVELOPE = API + "/RedPacke/GrabRedPacke"; //抢红包
+
+    String RED_ENVELOPE_RECORD = API + "/RedPacke/GetRedPackeRecord"; // 获取最新红包记录
 
 
     // 彭博

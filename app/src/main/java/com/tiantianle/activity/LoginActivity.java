@@ -1,5 +1,6 @@
 package com.tiantianle.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.tiantianle.BaseActivity;
+import com.tiantianle.MainActivity;
 import com.tiantianle.R;
 import com.tiantianle.utils.Constant;
 import com.tiantianle.utils.HttpApi;
@@ -135,10 +137,10 @@ public class LoginActivity extends BaseActivity {
                         Constant.Config.account = number;
                         Constant.Config.password = password;
 
-//                        SharedPreferences.Editor editor = MainActivity.sp.edit();
-//                        editor.putString("account", number);
-//                        editor.putString("password", password);
-//                        editor.commit();
+                        SharedPreferences.Editor editor = MainActivity.sp.edit();
+                        editor.putString("account", number);
+                        editor.putString("password", password);
+                        editor.commit();
 
                         finish();
                     } else {

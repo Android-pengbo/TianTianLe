@@ -1,5 +1,6 @@
 package com.tiantianle;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.fragment.HallFragment;
@@ -24,6 +26,7 @@ import com.tiantianle.utils.Constant;
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     public static SharedPreferences sp;
+    public static Dialog progressDialog;
 
     protected SlidingMenu mMenu;
     protected ImageView mPepoHead;
@@ -225,10 +228,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         return super.onKeyUp(keyCode, event);
     }
-/*    public boolean onKeyDown(int keyCode, KeyEvent event) {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if(System.currentTimeMillis()-firstTime>2000){
-                Toast.makeText(this,"再点击一次退出天天乐",Toast.LENGTH_SHORT).show();
+                Toast.makeText(this,"再点击一次退出天天乐", Toast.LENGTH_SHORT).show();
                 firstTime=System.currentTimeMillis();
             }else{
                 finish();
@@ -237,10 +240,39 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             return true;
         }
         return super.onKeyDown(keyCode, event);
-    }*/
+    }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         //super.onSaveInstanceState(outState);
+    }
+
+
+    //打开Dialog
+    public static void ManshowDialog(Context context, String str,Boolean bool) {
+        progressDialog = new Dialog(context);
+        progressDialog.setContentView(R.layout.dolog);
+        progressDialog.getWindow().setBackgroundDrawableResource(
+                android.R.color.transparent);
+        TextView msg = (TextView) progressDialog
+                .findViewById(R.id.tv_loadingmsg);
+        msg.setText(str);
+        if (bool) {
+
+            //设置dialog点击返回键也不会消失
+            progressDialog.setCancelable(false);
+        }
+
+        progressDialog.setCanceledOnTouchOutside(false);
+
+        progressDialog.show();
+    }
+
+    //关闭Dialog
+    public static void MancloseDialog() {
+        if(progressDialog !=null){
+            System.out.println("关闭Dialog！");
+            progressDialog.dismiss();
+        }
     }
 }

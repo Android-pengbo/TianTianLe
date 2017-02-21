@@ -25,7 +25,7 @@
 
         <!-- 夺宝记录 -->
         <activity android:name=".activity.IndianaRember"></activity>
-        <!-- 红包记录 -->
+        <!-- 红包兑换记录界面 -->
         <activity android:name=".activity.HongBaoRember"></activity>
         <!-- 兑换商城-兑换记录 -->
         <activity android:name=".activity.ShaoppingDuiHuanJiLu"></activity>
