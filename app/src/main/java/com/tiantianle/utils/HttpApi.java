@@ -8,7 +8,7 @@ package com.tiantianle.utils;
 
 public interface HttpApi {
 
-  String API = "http://192.168.1.194:8022"; //主地址
+  String API = "http://192.168.1.192:8022"; //主地址
 
 //   String API = "http://192.168.1.194:24528/";  //测试地址
 
@@ -21,6 +21,8 @@ public interface HttpApi {
     String LONGIN = API + "/appaccount/login"; //登录
 
     String REGISTERED = API + "/appaccount/register";//注册
+
+    String YES_NO_TREAD_PASSWORD = API + "/appaccount/existsdrawpd";//是否设置过交易密码
 
     String RESET_PASSWPRD = API + "/appaccount/resetpwd"; //重置密码
 

@@ -38,11 +38,11 @@ public class RecordAdapter extends ListBaseAdapter<RedRECORDBean.BizContentBean>
         } else {
             view = inflater.inflate(R.layout.item_hong_bao_duihuan_adapter, null);
             holder = new ViewHolder();
-            holder.tv = (SuperTextView) view.findViewById(R.id.suptext_hongbao_fram_mlist);
+            holder.tv = (SuperTextView) view.findViewById(R.id.suptertext_duihuan_hongbao);
             view.setTag(holder);
         }
 
-        holder.tv.setCenterString(list.get(position).getPrice() + ""); //金额
+        holder.tv.setLeftString(list.get(position).getPrice() + ""); //金额
         holder.tv.setRightString(list.get(position).getCtime());//时间
 
 

@@ -24,6 +24,7 @@ import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.tiantianle.R;
 import com.tiantianle.activity.AutoBetting;
 import com.tiantianle.activity.Betting;
+import com.tiantianle.activity.ModelManagementActivity;
 import com.tiantianle.adapter.JiSuLiseFragmentAdapter;
 import com.tiantianle.utils.IntentUtils;
 import com.tiantianle.view.MyListview;
@@ -220,6 +221,7 @@ public class JiSuFragment extends Fragment implements View.OnClickListener {
             @Override
             public void onClick(View view) {
                 Toast.makeText(getContext(), "模式管理", Toast.LENGTH_SHORT).show();
+                IntentUtils.goTo(getActivity(),ModelManagementActivity.class);
             }
         });
         mMyPaLoss= (LinearLayout) inflate1.findViewById(R.id.ll_myPaLoss);

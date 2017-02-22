@@ -26,12 +26,16 @@ public class RedRECORDBean {
     }
 
     public List<BizContentBean> getBiz_content() {
+
         return biz_content;
     }
 
+
     public void setBiz_content(List<BizContentBean> biz_content) {
+
         this.biz_content = biz_content;
     }
+
 
     public static class BizContentBean {
         /**

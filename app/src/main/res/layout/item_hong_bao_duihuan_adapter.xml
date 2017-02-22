@@ -7,7 +7,7 @@
 
     <com.allen.library.SuperTextView
         android:id="@+id/suptertext_duihuan_hongbao"
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         app:sLeftTextColor="@color/clolrTextNorenl"
@@ -17,5 +17,7 @@
         app:sRightTextColor="@color/clolrTextNorenl"
         app:sRightTextMarginRight="10dp"
         app:sRightTextSize="12sp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
         app:sRightTextString="02-06 15:31" />
 </LinearLayout>

@@ -13,7 +13,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainActivity"
+        <activity android:name=".activity.HomePageActivity"
             android:launchMode="singleTask"
             >
             <intent-filter>
@@ -42,11 +42,19 @@
 
         <!--宗***********************************************-->
 
+        <!--主界面-->
+        <activity android:name=".MainActivity"
+            android:launchMode="singleTask"></activity>
+
         <!--登录-->
-        <activity android:name=".activity.LoginActivity"></activity>
+        <activity android:name=".activity.LoginActivity"
+            android:launchMode="singleTask"></activity>
 
         <!--忘记密码 / 注册界面-->
         <activity android:name=".activity.ForgotPasswordActivity"></activity>
+
+        <!--设置交易密码-->
+        <activity android:name=".activity.SetTradingPassword"></activity>
 
         <!--修改个人信息-->
         <activity android:name=".activity.ModifyInformationActivity"></activity>
@@ -65,6 +73,8 @@
 
         <!--短信验证-->
         <activity android:name=".activity.MessageAuthenticationActivity"></activity>
+
+        <activity android:name=".activity.ModelManagementActivity"></activity>
 
     </application>
 

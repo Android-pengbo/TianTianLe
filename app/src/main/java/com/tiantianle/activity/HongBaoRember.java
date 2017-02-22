@@ -103,7 +103,7 @@ public class HongBaoRember extends BaseActivity {
                         Message mg = Message.obtain(mHnaHandler, YES);
                         mg.sendToTarget();
                     }else{
-                        ToastUtils.showShort(HongBaoRember.this,"没有更多数据!");
+                        ToastUtils.showShort(HongBaoRember.this,"暂无记录!");
                     }
                 }
 

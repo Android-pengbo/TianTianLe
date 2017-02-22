@@ -7,11 +7,17 @@
     <string name="HongBao">整点抢红包</string>
     <string name="Hall">大厅</string>
     <string name="Trend">趋势</string>
+    <string name="TrendQuery">趋势查询</string>
+    <string name="StatisticalRange">统计范围:</string>
+    <string name="period">期</string>
+    <string name="cancel">取消</string>
+    <string name="determine">确定</string>
     <string name="ShoppingMall">兑换商城</string>
     <string name="My">我的</string>
     <string name="Seting">设置</string>
     <string name="VIP">会员</string>
-    <string name="MagicBean">魔豆</string>
+    <string name="MagicBean">魔豆:</string>
+    <string name="Nicknames">昵称:</string>
     <string name="GameTimes">游戏场次</string>
     <string name="RecordHongbao">红包记录</string>
     <string name="RecordIndiana">夺宝记录</string>
@@ -61,6 +67,14 @@
     <string name="duihuanSuoXuMoDou">所需魔豆:</string>
     <string name="MyMessage">我的消息</string>
     <string name="MyMessage_delete">清空</string>
+
+    <!--模式管理-->
+    <string name="New_Mode">新建模式</string>
+    <string name="Mode_Name">模式名称</string>
+    <string name="Modify_Name">改名</string>
+    <string name="Delete_Name">删除</string>
+    
+    
     
     <!--登陆界面-->
     <string name="Input_Number">请输入手机号码</string>
@@ -68,6 +82,7 @@
     <string name="Login_Immediately">立即登录</string>
     <string name="Forgot_Password">忘记密码?</string>
     <string name="Register_Now">立即注册</string>
+    <string name="Visitors_Login">游客账户登录</string>
     
     <string name="Forgot_Passwords">忘记密码</string>
     <string name="Please_Code">请输入验证码</string>
