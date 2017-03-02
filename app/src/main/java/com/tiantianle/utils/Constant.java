@@ -13,11 +13,11 @@ public final class Constant {
 
         public static SharedPreferences sp;  //
 
-        public static String account = null;   //账户
+        public static String account = null;   //账户  测试账户 18217614361
 
         public static String password = null; // 密码
 
-        public static String imei = null; //设备号
+        public static String imei = null; //设备号 测试设备号8888
 
         public static String nickname = null; //昵称
 

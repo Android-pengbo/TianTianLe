@@ -71,8 +71,12 @@
     <!--模式管理-->
     <string name="New_Mode">新建模式</string>
     <string name="Mode_Name">模式名称</string>
+    <string name="Betting_Amount">投注金额</string>
     <string name="Modify_Name">改名</string>
     <string name="Delete_Name">删除</string>
+    <string name="Delete_Mode">删除模式</string>
+    <string name="Confirm_Delete_Mode">确认删除模式</string>
+    <string name="Modify_Mode_Name">修改模式名称</string>
     
     
     

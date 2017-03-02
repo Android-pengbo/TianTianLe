@@ -74,6 +74,7 @@
         <!--短信验证-->
         <activity android:name=".activity.MessageAuthenticationActivity"></activity>
 
+        <!--模式管理-->
         <activity android:name=".activity.ModelManagementActivity"></activity>
 
     </application>

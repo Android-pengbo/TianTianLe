@@ -50,6 +50,11 @@ public interface HttpApi {
 
     String RED_ENVELOPE_RECORD = API + "/RedPacke/GetRedPackeRecord"; // 获取最新红包记录
 
+    String MODEL_RECORDS = API + "/lottery/GetLotteryModelList";  //模式记录获取
+
+    String MODIFY_NAME = API + "/lottery/UpdLotteryModelName";    //修改模式名字
+
+    String DELETE_MODEL = API + "/lottery/UpdLotteryModelStatus";   //删除模式
 
     // 彭博
 
